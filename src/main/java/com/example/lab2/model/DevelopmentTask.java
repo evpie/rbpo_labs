@@ -1,52 +1,40 @@
 package com.example.lab2.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class DevelopmentTask {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long productId;   // Ссылка на SoftwareProduct
-    private Long assigneeId;  // Ссылка на User (исполнитель)
+
+    // Связь с продуктом
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private SoftwareProduct product;
+
+    // Связь с юзером (исполнителем)
+    @ManyToOne
+    @JoinColumn(name = "assignee_id")
+    private User assignee;
+
     private String version;
-    private String status;    // Например, "TODO", "IN_PROGRESS", "DONE"
+    private String status;
 
-    public DevelopmentTask() {
-    }
+    public DevelopmentTask() {}
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public SoftwareProduct getProduct() { return product; }
+    public void setProduct(SoftwareProduct product) { this.product = product; }
 
-    public Long getProductId() {
-        return productId;
-    }
+    public User getAssignee() { return assignee; }
+    public void setAssignee(User assignee) { this.assignee = assignee; }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+    public String getVersion() { return version; }
+    public void setVersion(String version) { this.version = version; }
 
-    public Long getAssigneeId() {
-        return assigneeId;
-    }
-
-    public void setAssigneeId(Long assigneeId) {
-        this.assigneeId = assigneeId;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

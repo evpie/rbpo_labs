@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: "24002"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lab3_db
+    username: lab_user
+    password: my_secret_password123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

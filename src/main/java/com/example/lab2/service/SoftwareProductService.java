@@ -24,13 +24,8 @@ public class SoftwareProductService {
         this.releaseRepository = releaseRepository;
     }
 
-    public List<SoftwareProduct> findAll() {
-        return repository.findAll();
-    }
-
-    public Optional<SoftwareProduct> findById(Long id) {
-        return repository.findById(id);
-    }
+    public List<SoftwareProduct> findAll() { return repository.findAll(); }
+    public Optional<SoftwareProduct> findById(Long id) { return repository.findById(id); }
 
     public SoftwareProduct create(SoftwareProduct product) {
         product.setId(null);
@@ -42,23 +37,25 @@ public class SoftwareProductService {
             if (updates.getName() != null) existing.setName(updates.getName());
             if (updates.getResponsibleUserId() != null) existing.setResponsibleUserId(updates.getResponsibleUserId());
             if (updates.getCurrentVersion() != null) existing.setCurrentVersion(updates.getCurrentVersion());
+            if (updates.getStatus() != null) existing.setStatus(updates.getStatus());
             return repository.save(existing);
         });
     }
 
     public boolean delete(Long id) {
-        // Условие из задания: удаление связанных объектов не должно оставлять недействительных ссылок
-        // 1. Удаляем все задачи, привязанные к этому продукту
-        taskRepository.findAll().stream()
-                .filter(task -> id.equals(task.getProductId()))
-                .forEach(task -> taskRepository.deleteById(task.getId()));
+        return repository.findById(id).map(product -> {
+            // Каскадное удаление задач
+            taskRepository.findAll().stream()
+                    .filter(task -> product.equals(task.getProduct()))
+                    .forEach(taskRepository::delete);
 
-        // 2. Удаляем все релизы, привязанные к этому продукту
-        releaseRepository.findAll().stream()
-                .filter(release -> id.equals(release.getProductId()))
-                .forEach(release -> releaseRepository.deleteById(release.getId()));
+            // Каскадное удаление релизов
+            releaseRepository.findAll().stream()
+                    .filter(release -> product.equals(release.getProduct()))
+                    .forEach(releaseRepository::delete);
 
-        // 3. Удаляем сам продукт
-        return repository.deleteById(id);
+            repository.delete(product);
+            return true;
+        }).orElse(false);
     }
 }

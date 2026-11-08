@@ -1,0 +1,219 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "name": "RBPO Lab 3 - API",
+    "description": "Коллекция запросов для лабораторной работы №3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Users (Пользователи)",
+      "item": [
+        {
+          "name": "1.1 Создать пользователя",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Иван Тестовый\",\n  \"email\": \"ivan@test.com\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "http://localhost:8080/api/users", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users"] }
+          }
+        },
+        {
+          "name": "1.2 Получить всех",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/users", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users"] } }
+        },
+        {
+          "name": "1.3 Получить одного (ID=1)",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/users/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1"] } }
+        },
+        {
+          "name": "1.4 Обновить (ID=1)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Петр Обновленный\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/users/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1"] }
+          }
+        },
+        {
+          "name": "1.5 Удалить (ID=1)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/users/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "2. SoftwareProducts (Продукты)",
+      "item": [
+        {
+          "name": "2.1 Создать продукт",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Супер Приложение\",\n  \"responsibleUserId\": 1,\n  \"currentVersion\": \"1.0.0\",\n  \"status\": \"IN_DEVELOPMENT\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/software-products", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "software-products"] }
+          }
+        },
+        {
+          "name": "2.2 Получить всех",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/software-products", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "software-products"] } }
+        },
+        {
+          "name": "2.3 Получить одного (ID=1)",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/software-products/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "software-products", "1"] } }
+        },
+        {
+          "name": "2.4 Обновить (ID=1)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"currentVersion\": \"1.1.0\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/software-products/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "software-products", "1"] }
+          }
+        },
+        {
+          "name": "2.5 Удалить (ID=1)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/software-products/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "software-products", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "3. DevelopmentTasks (Задачи)",
+      "item": [
+        {
+          "name": "3.1 Создать задачу",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"product\": {\"id\": 1},\n  \"version\": \"1.0.0\",\n  \"status\": \"TODO\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/development-tasks", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks"] }
+          }
+        },
+        {
+          "name": "3.2 Получить всех",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/development-tasks", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks"] } }
+        },
+        {
+          "name": "3.3 Получить одного (ID=1)",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/development-tasks/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks", "1"] } }
+        },
+        {
+          "name": "3.4 Обновить (ID=1)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"IN_PROGRESS\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/development-tasks/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks", "1"] }
+          }
+        },
+        {
+          "name": "3.5 Удалить (ID=1)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/development-tasks/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "4. ProductReleases (Релизы)",
+      "item": [
+        {
+          "name": "4.1 Создать релиз",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"product\": {\"id\": 1},\n  \"versionNumber\": \"1.0.0\",\n  \"status\": \"DRAFT\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/releases", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases"] }
+          }
+        },
+        {
+          "name": "4.2 Получить всех",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/releases", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases"] } }
+        },
+        {
+          "name": "4.3 Получить одного (ID=1)",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/releases/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases", "1"] } }
+        },
+        {
+          "name": "4.4 Обновить (ID=1)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"DEPRECATED\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/releases/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases", "1"] }
+          }
+        },
+        {
+          "name": "4.5 Удалить (ID=1)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/releases/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "5. ReleaseChecks (Проверки)",
+      "item": [
+        {
+          "name": "5.1 Создать проверку",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"release\": {\"id\": 1},\n  \"checkName\": \"Проверка безопасности\",\n  \"mandatory\": true,\n  \"result\": \"PENDING\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/release-checks", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "release-checks"] }
+          }
+        },
+        {
+          "name": "5.2 Получить всех",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/release-checks", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "release-checks"] } }
+        },
+        {
+          "name": "5.3 Получить одного (ID=1)",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/release-checks/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "release-checks", "1"] } }
+        },
+        {
+          "name": "5.4 Обновить (ID=1)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"result\": \"PASSED\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/release-checks/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "release-checks", "1"] }
+          }
+        },
+        {
+          "name": "5.5 Удалить (ID=1)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/release-checks/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "release-checks", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "6. Бизнес-операции (Задание 3)",
+      "item": [
+        {
+          "name": "6.1 Назначить задачу на юзера",
+          "request": { "method": "POST", "header": [], "url": { "raw": "http://localhost:8080/api/development-tasks/1/assign/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks", "1", "assign", "1"] } }
+        },
+        {
+          "name": "6.2 Взять задачу в работу",
+          "request": { "method": "POST", "header": [], "url": { "raw": "http://localhost:8080/api/development-tasks/1/start", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "development-tasks", "1", "start"] } }
+        },
+        {
+          "name": "6.3 Выпустить релиз (с проверкой правил)",
+          "request": { "method": "POST", "header": [], "url": { "raw": "http://localhost:8080/api/releases/1/publish", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases", "1", "publish"] } }
+        },
+        {
+          "name": "6.4 Уволить пользователя",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/users/1/fire", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1", "fire"] } }
+        },
+        {
+          "name": "6.5 Создать релиз с проверками",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"product\": {\"id\": 1},\n  \"versionNumber\": \"2.0.0\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/releases/with-checks", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "releases", "with-checks"] }
+          }
+        }
+      ]
+    }
+  ]
+}

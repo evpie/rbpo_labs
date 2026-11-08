@@ -1,6 +1,7 @@
 package com.example.lab2.service;
 
 import com.example.lab2.model.User;
+import com.example.lab2.repository.DevelopmentTaskRepository;
 import com.example.lab2.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,11 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final DevelopmentTaskRepository taskRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, DevelopmentTaskRepository taskRepository) {
         this.userRepository = userRepository;
+        this.taskRepository = taskRepository;
     }
 
     public List<User> findAll() {
@@ -25,7 +28,7 @@ public class UserService {
     }
 
     public User create(User user) {
-        user.setId(null); // id присвоит репозиторий
+        user.setId(null); // id присвоит база данных
         return userRepository.save(user);
     }
 
@@ -38,6 +41,24 @@ public class UserService {
     }
 
     public boolean delete(Long id) {
-        return userRepository.deleteById(id);
+        return userRepository.findById(id).map(user -> {
+            userRepository.delete(user);
+            return true;
+        }).orElse(false);
+    }
+
+    public void fireUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
+
+        // Отвязываем его от всех задач
+        taskRepository.findAll().stream()
+                .filter(task -> user.equals(task.getAssignee()))
+                .forEach(task -> {
+                    task.setAssignee(null); // Убираем исполнителя
+                    taskRepository.save(task); // Сохраняем обновленную задачу
+                });
+
+        userRepository.delete(user);
     }
 }

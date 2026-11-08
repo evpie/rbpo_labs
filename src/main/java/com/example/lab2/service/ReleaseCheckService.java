@@ -16,13 +16,8 @@ public class ReleaseCheckService {
         this.repository = repository;
     }
 
-    public List<ReleaseCheck> findAll() {
-        return repository.findAll();
-    }
-
-    public Optional<ReleaseCheck> findById(Long id) {
-        return repository.findById(id);
-    }
+    public List<ReleaseCheck> findAll() { return repository.findAll(); }
+    public Optional<ReleaseCheck> findById(Long id) { return repository.findById(id); }
 
     public ReleaseCheck create(ReleaseCheck check) {
         check.setId(null);
@@ -31,9 +26,8 @@ public class ReleaseCheckService {
 
     public Optional<ReleaseCheck> update(Long id, ReleaseCheck updates) {
         return repository.findById(id).map(existing -> {
-            if (updates.getReleaseId() != null) existing.setReleaseId(updates.getReleaseId());
+            if (updates.getRelease() != null) existing.setRelease(updates.getRelease());
             if (updates.getCheckName() != null) existing.setCheckName(updates.getCheckName());
-            // Для boolean обновляем всегда, так как false - это тоже значение
             existing.setMandatory(updates.isMandatory());
             if (updates.getResult() != null) existing.setResult(updates.getResult());
             return repository.save(existing);
@@ -41,6 +35,9 @@ public class ReleaseCheckService {
     }
 
     public boolean delete(Long id) {
-        return repository.deleteById(id);
+        return repository.findById(id).map(check -> {
+            repository.delete(check);
+            return true;
+        }).orElse(false);
     }
 }
