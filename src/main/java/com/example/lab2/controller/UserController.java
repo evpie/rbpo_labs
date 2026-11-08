@@ -5,6 +5,7 @@ import com.example.lab2.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize; // <-- ВАЖНЫЙ ИМПОРТ
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    // GET /api/users — все пользователи
+    // GET /api/users — все пользователи (доступно всем авторизованным)
     @GetMapping
     public ResponseEntity<List<User>> getAll() {
         return ResponseEntity.ok(userService.findAll());
@@ -32,7 +33,8 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST /api/users — создать
+    // POST /api/users — создать (только админ)
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
         User created = userService.create(user);
@@ -47,12 +49,21 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE /api/users/{id} — удалить
+    // DELETE /api/users/{id} — удалить (только админ)
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (userService.delete(id)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    // DELETE /api/users/{id}/fire — уволить (только админ)
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}/fire")
+    public ResponseEntity<Void> fireUser(@PathVariable Long id) {
+        userService.fireUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

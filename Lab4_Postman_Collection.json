@@ -1,0 +1,84 @@
+{
+  "info": {
+    "_postman_id": "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+    "name": "RBPO Lab 4 - Security API",
+    "description": "Коллекция с поддержкой Basic Auth и CSRF",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0. Регистрация (Открытый доступ)",
+      "item": [
+        {
+          "name": "0.1 Регистрация нового юзера",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Новый Разработчик\",\n  \"email\": \"dev@test.com\",\n  \"password\": \"dev12345\",\n  \"confirmPassword\": \"dev12345\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "http://localhost:8080/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "auth", "register"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Users (Пользователи)",
+      "item": [
+        {
+          "name": "1.1 Получить всех",
+          "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/users", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users"] } }
+        },
+        {
+          "name": "1.2 Уволить пользователя (ID=2)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/users/2/fire", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "2", "fire"] } }
+        }
+      ]
+    },
+    {
+      "name": "2. Продукты",
+      "item": [
+        {
+          "name": "2.1 Создать продукт",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Супер Приложение\",\n  \"responsibleUserId\": 1,\n  \"currentVersion\": \"1.0.0\",\n  \"status\": \"IN_DEVELOPMENT\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "http://localhost:8080/api/software-products", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "software-products"] }
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "admin@test.com", "type": "string" },
+      { "key": "password", "value": "admin123", "type": "string" }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Запрашиваем CSRF-токен перед каждым запросом",
+          "pm.sendRequest({",
+          "    url: 'http://localhost:8080/api/csrf',", // Нам нужно будет создать этот эндпоинт!
+          "    method: 'GET',",
+          "    header: {",
+          "        'Authorization': 'Basic ' + btoa(pm.variables.get('username') || 'admin@test.com') + ':' + (pm.variables.get('password') || 'admin123')",
+          "    }",
+          "}, function (err, res) {",
+          "    if (res && res.json() && res.json().token) {",
+          "        pm.request.headers.add({key: 'X-CSRF-TOKEN', value: res.json().token});",
+          "    }",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}
