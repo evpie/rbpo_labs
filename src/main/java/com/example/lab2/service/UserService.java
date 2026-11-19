@@ -4,9 +4,13 @@ import com.example.lab2.model.User;
 import com.example.lab2.repository.DevelopmentTaskRepository;
 import com.example.lab2.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.example.lab2.model.Role;
 import com.example.lab2.model.RegisterRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,12 +62,13 @@ public class UserService {
         }).orElse(false);
     }
 
+    @Transactional
     public void fireUser(Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Пользователь не найден"));
 
         taskRepository.findAll().stream()
-                .filter(task -> user.equals(task.getAssignee()))
+                .filter(task -> task.getAssignee() != null && userId.equals(task.getAssignee().getId()))
                 .forEach(task -> {
                     task.setAssignee(null);
                     taskRepository.save(task);
@@ -75,17 +80,16 @@ public class UserService {
     // новый метод регистрации
     public User register(RegisterRequest request) {
         if (!request.getPassword().equals(request.getConfirmPassword())) {
-            throw new RuntimeException("Пароли не совпадают");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Пароли не совпадают");
         }
 
         if (request.getPassword().length() < 6) {
-            throw new RuntimeException("Пароль должен быть не менее 6 символов");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Пароль должен быть не менее 6 символов");
         }
 
-        boolean emailExists = userRepository.findAll().stream()
-                .anyMatch(u -> u.getEmail().equals(request.getEmail()));
+        boolean emailExists = userRepository.existsByEmail(request.getEmail());
         if (emailExists) {
-            throw new RuntimeException("Пользователь с таким email уже существует");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Пользователь с таким email уже существует");
         }
 
         User user = new User();
@@ -96,5 +100,22 @@ public class UserService {
         user.setActive(true);
 
         return userRepository.save(user);
+    }
+
+    public User login(String email, String password) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Неверный логин или пароль"));
+
+        // Проверяем, что пароль совпадает с хэшем в базе
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Неверный логин или пароль");
+        }
+
+        // Проверяем, не уволен ли он
+        if (!user.isActive()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Учетная запись заблокирована");
+        }
+
+        return user;
     }
 }

@@ -1,0 +1,2682 @@
+{
+  "info": {
+    "_postman_id": "b541d583-8108-4b54-9f4f-8bc2d5d65c0e",
+    "name": "RBPO — проект и задание 5",
+    "description": "Полный последовательный прогон всех HTTP-методов проекта и JWT access/refresh. Запустить все папки в Runner сверху вниз. Проверки БД: database/check_sessions.sql. Opaque и производительность: mvn test. Просроченные JWT, неизвестные подписанные сессии, откаты и гонка двух refresh проверяются Java-тестами.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "adminEmail",
+      "value": "admin@test.com",
+      "type": "string"
+    },
+    {
+      "key": "adminPassword",
+      "value": "admin123",
+      "type": "string"
+    },
+    {
+      "key": "userPassword",
+      "value": "dev12345",
+      "type": "string"
+    },
+    {
+      "key": "runEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "registerEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "scratchEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "fireEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "adminAccessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "adminRefreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "oldAccessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "oldRefreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "registeredAccessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "registeredRefreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "aliasAccessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "aliasRefreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "scratchUserId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "fireUserId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "registeredUserId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "productId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "taskId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "releaseId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "checkId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "00. Подготовка",
+      "description": "Запустить коллекцию целиком в Runner. Нужна действующая учётная запись ADMIN. На пустой БД приложение создаёт admin@test.com / admin123. Переменные adminEmail и adminPassword можно изменить.",
+      "item": [
+        {
+          "name": "Вход администратора",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{adminEmail}}\",\n  \"password\": \"{{adminPassword}}\",\n  \"deviceId\": \"postman-admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const id = pm.variables.replaceIn('{{$guid}}');",
+                  "pm.collectionVariables.set('runEmail', 'lab5-' + id + '@test.com');",
+                  "pm.collectionVariables.set('registerEmail', 'register-' + id + '@test.com');",
+                  "pm.collectionVariables.set('scratchEmail', 'scratch-' + id + '@test.com');",
+                  "pm.collectionVariables.set('fireEmail', 'fire-' + id + '@test.com');"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "if ([200, 201].includes(pm.response.code)) {",
+                  "  const b = pm.response.json();",
+                  "  const decode = part => JSON.parse(require('buffer').Buffer.from(part, 'base64').toString());",
+                  "  pm.test(\"JWT HS256 с обязательными claims\", () => {",
+                  "    for (const [token, type] of [[b.accessToken, 'access'], [b.refreshToken, 'refresh']]) {",
+                  "      const parts = token.split('.'); pm.expect(parts).to.have.lengthOf(3);",
+                  "      pm.expect(decode(parts[0]).alg).to.eql('HS256');",
+                  "      const c = decode(parts[1]); pm.expect(c.type).to.eql(type);",
+                  "      pm.expect(c.sub).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.jti).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.iat).to.be.a('number'); pm.expect(c.exp).to.be.above(c.iat);",
+                  "    }",
+                  "    pm.expect(decode(b.accessToken.split('.')[1]).jti).not.to.eql(decode(b.refreshToken.split('.')[1]).jti);",
+                  "  });",
+                  "  pm.collectionVariables.set('adminAccessToken', b.accessToken);",
+                  "  pm.collectionVariables.set('adminRefreshToken', b.refreshToken);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Создать разработчика без сессии",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Разработчик Lab 5\",\n  \"email\": \"{{runEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"role\": \"DEVELOPER\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('userId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "01. Задание 5 — выдача, обмен и повтор",
+      "description": "Для runEmail до логина нет сессий. Проверяйте таблицу через database/check_sessions.sql после запросов «Вход», «Обновить» и «Повторить». Postman не подключается к БД; состояния дополнительно проверяет AuthIntegrationTest.",
+      "item": [
+        {
+          "name": "1. Вход — первая ACTIVE",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{runEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"deviceId\": \"postman-device\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "if ([200, 201].includes(pm.response.code)) {",
+                  "  const b = pm.response.json();",
+                  "  const decode = part => JSON.parse(require('buffer').Buffer.from(part, 'base64').toString());",
+                  "  pm.test(\"JWT HS256 с обязательными claims\", () => {",
+                  "    for (const [token, type] of [[b.accessToken, 'access'], [b.refreshToken, 'refresh']]) {",
+                  "      const parts = token.split('.'); pm.expect(parts).to.have.lengthOf(3);",
+                  "      pm.expect(decode(parts[0]).alg).to.eql('HS256');",
+                  "      const c = decode(parts[1]); pm.expect(c.type).to.eql(type);",
+                  "      pm.expect(c.sub).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.jti).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.iat).to.be.a('number'); pm.expect(c.exp).to.be.above(c.iat);",
+                  "    }",
+                  "    pm.expect(decode(b.accessToken.split('.')[1]).jti).not.to.eql(decode(b.refreshToken.split('.')[1]).jti);",
+                  "  });",
+                  "  pm.collectionVariables.set('accessToken', b.accessToken);",
+                  "  pm.collectionVariables.set('refreshToken', b.refreshToken);",
+                  "}",
+                  "",
+                  "pm.collectionVariables.set('oldAccessToken', pm.collectionVariables.get('accessToken'));",
+                  "pm.collectionVariables.set('oldRefreshToken', pm.collectionVariables.get('refreshToken'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2. Защищённый endpoint с access",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Пароли скрыты\", () => pm.response.json().forEach(u => pm.expect(u).not.to.have.property(\"password\")));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3. Обновить — USED и новая ACTIVE",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "if ([200, 201].includes(pm.response.code)) {",
+                  "  const b = pm.response.json();",
+                  "  const decode = part => JSON.parse(require('buffer').Buffer.from(part, 'base64').toString());",
+                  "  pm.test(\"JWT HS256 с обязательными claims\", () => {",
+                  "    for (const [token, type] of [[b.accessToken, 'access'], [b.refreshToken, 'refresh']]) {",
+                  "      const parts = token.split('.'); pm.expect(parts).to.have.lengthOf(3);",
+                  "      pm.expect(decode(parts[0]).alg).to.eql('HS256');",
+                  "      const c = decode(parts[1]); pm.expect(c.type).to.eql(type);",
+                  "      pm.expect(c.sub).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.jti).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.iat).to.be.a('number'); pm.expect(c.exp).to.be.above(c.iat);",
+                  "    }",
+                  "    pm.expect(decode(b.accessToken.split('.')[1]).jti).not.to.eql(decode(b.refreshToken.split('.')[1]).jti);",
+                  "  });",
+                  "  pm.collectionVariables.set('accessToken', b.accessToken);",
+                  "  pm.collectionVariables.set('refreshToken', b.refreshToken);",
+                  "}",
+                  "",
+                  "pm.test(\"Оба токена изменились\", () => {",
+                  "  const b = pm.response.json();",
+                  "  pm.expect(b.accessToken).not.to.eql(pm.collectionVariables.get('oldAccessToken'));",
+                  "  pm.expect(b.refreshToken).not.to.eql(pm.collectionVariables.get('oldRefreshToken'));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "4. Повторить старый refresh — REVOKED, 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "Теперь в БД две строки: старая REVOKED, новая ACTIVE. Третьей строки нет.",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{oldRefreshToken}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "5. Отозванный refresh — 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{oldRefreshToken}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Новый access работает",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Старый access действует до exp",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{oldAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02. Ошибки аутентификации и роли",
+      "description": "",
+      "item": [
+        {
+          "name": "Без access — 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refresh вместо access — 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{refreshToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Повреждённый access — 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "broken-token",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Access вместо refresh — 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{accessToken}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Повреждённый refresh — 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"broken-token\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Пустой refresh — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \" \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Нет refresh — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Неверный пароль — 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{runEmail}}\",\n  \"password\": \"wrong-password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Нет пароля — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{runEmail}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Пустой email — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \" \",\n  \"password\": \"{{userPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Некорректный JSON — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Разработчик не создаёт пользователей — 403",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Нет доступа\",\n  \"email\": \"forbidden@test.com\",\n  \"password\": \"secret123\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Разработчик не создаёт продукты — 403",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/software-products",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Нет доступа\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Разработчик не удаляет пользователей — 403",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/{{userId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03. Регистрация и старые адреса",
+      "description": "",
+      "item": [
+        {
+          "name": "Регистрация сразу выдаёт пару — 201",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/register",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Регистрация Lab 5\",\n  \"email\": \"{{registerEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"confirmPassword\": \"{{userPassword}}\",\n  \"deviceId\": \"phone\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if ([200, 201].includes(pm.response.code)) {",
+                  "  const b = pm.response.json();",
+                  "  const decode = part => JSON.parse(require('buffer').Buffer.from(part, 'base64').toString());",
+                  "  pm.test(\"JWT HS256 с обязательными claims\", () => {",
+                  "    for (const [token, type] of [[b.accessToken, 'access'], [b.refreshToken, 'refresh']]) {",
+                  "      const parts = token.split('.'); pm.expect(parts).to.have.lengthOf(3);",
+                  "      pm.expect(decode(parts[0]).alg).to.eql('HS256');",
+                  "      const c = decode(parts[1]); pm.expect(c.type).to.eql(type);",
+                  "      pm.expect(c.sub).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.jti).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.iat).to.be.a('number'); pm.expect(c.exp).to.be.above(c.iat);",
+                  "    }",
+                  "    pm.expect(decode(b.accessToken.split('.')[1]).jti).not.to.eql(decode(b.refreshToken.split('.')[1]).jti);",
+                  "  });",
+                  "  pm.collectionVariables.set('registeredAccessToken', b.accessToken);",
+                  "  pm.collectionVariables.set('registeredRefreshToken', b.refreshToken);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Повтор регистрации — 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/register",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Регистрация Lab 5\",\n  \"email\": \"{{registerEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"confirmPassword\": \"{{userPassword}}\",\n  \"deviceId\": \"phone\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 409\", () => pm.response.to.have.status(409));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Короткий пароль — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/register",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Регистрация Lab 5\",\n  \"email\": \"short-{{registerEmail}}\",\n  \"password\": \"123\",\n  \"confirmPassword\": \"123\",\n  \"deviceId\": \"phone\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Пароли различаются — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/register",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Регистрация Lab 5\",\n  \"email\": \"{{registerEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"confirmPassword\": \"different\",\n  \"deviceId\": \"phone\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Нет имени — 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/register",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{registerEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"confirmPassword\": \"{{userPassword}}\",\n  \"deviceId\": \"phone\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Проверить роль после попытки ADMIN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{registeredAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Самостоятельная регистрация даёт DEVELOPER\", () => {",
+                  "  const user = pm.response.json().find(u => u.email === pm.collectionVariables.get('registerEmail'));",
+                  "  pm.expect(user.role).to.eql('DEVELOPER'); pm.collectionVariables.set('registeredUserId', user.id);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Старый адрес login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/auth/login",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{runEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"deviceId\": \"postman-device\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "if ([200, 201].includes(pm.response.code)) {",
+                  "  const b = pm.response.json();",
+                  "  const decode = part => JSON.parse(require('buffer').Buffer.from(part, 'base64').toString());",
+                  "  pm.test(\"JWT HS256 с обязательными claims\", () => {",
+                  "    for (const [token, type] of [[b.accessToken, 'access'], [b.refreshToken, 'refresh']]) {",
+                  "      const parts = token.split('.'); pm.expect(parts).to.have.lengthOf(3);",
+                  "      pm.expect(decode(parts[0]).alg).to.eql('HS256');",
+                  "      const c = decode(parts[1]); pm.expect(c.type).to.eql(type);",
+                  "      pm.expect(c.sub).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.jti).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.iat).to.be.a('number'); pm.expect(c.exp).to.be.above(c.iat);",
+                  "    }",
+                  "    pm.expect(decode(b.accessToken.split('.')[1]).jti).not.to.eql(decode(b.refreshToken.split('.')[1]).jti);",
+                  "  });",
+                  "  pm.collectionVariables.set('aliasAccessToken', b.accessToken);",
+                  "  pm.collectionVariables.set('aliasRefreshToken', b.refreshToken);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Старый адрес refresh",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/auth/refresh",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{aliasRefreshToken}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "if ([200, 201].includes(pm.response.code)) {",
+                  "  const b = pm.response.json();",
+                  "  const decode = part => JSON.parse(require('buffer').Buffer.from(part, 'base64').toString());",
+                  "  pm.test(\"JWT HS256 с обязательными claims\", () => {",
+                  "    for (const [token, type] of [[b.accessToken, 'access'], [b.refreshToken, 'refresh']]) {",
+                  "      const parts = token.split('.'); pm.expect(parts).to.have.lengthOf(3);",
+                  "      pm.expect(decode(parts[0]).alg).to.eql('HS256');",
+                  "      const c = decode(parts[1]); pm.expect(c.type).to.eql(type);",
+                  "      pm.expect(c.sub).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.jti).to.be.a('string').and.not.empty;",
+                  "      pm.expect(c.iat).to.be.a('number'); pm.expect(c.exp).to.be.above(c.iat);",
+                  "    }",
+                  "    pm.expect(decode(b.accessToken.split('.')[1]).jti).not.to.eql(decode(b.refreshToken.split('.')[1]).jti);",
+                  "  });",
+                  "  pm.collectionVariables.set('aliasAccessToken', b.accessToken);",
+                  "  pm.collectionVariables.set('aliasRefreshToken', b.refreshToken);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Старый адрес register — тот же 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/auth/register",
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Регистрация Lab 5\",\n  \"email\": \"{{registerEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"confirmPassword\": \"{{userPassword}}\",\n  \"deviceId\": \"phone\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 409\", () => pm.response.to.have.status(409));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04. Пользователи — CRUD и увольнение",
+      "description": "",
+      "item": [
+        {
+          "name": "Создать пользователя",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Временный\",\n  \"email\": \"{{scratchEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"role\": \"DEVELOPER\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('scratchUserId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Получить список",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Получить по ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/{{scratchUserId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Изменить имя",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users/{{scratchUserId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Изменённое имя\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Имя изменилось\", () => pm.expect(pm.response.json().name).to.eql(\"Изменённое имя\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Удалить пользователя",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/{{scratchUserId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 204\", () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Удалённого пользователя нет",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/{{scratchUserId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Создать пользователя для увольнения",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Увольняемый\",\n  \"email\": \"{{fireEmail}}\",\n  \"password\": \"{{userPassword}}\",\n  \"role\": \"DEVELOPER\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('fireUserId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05. Продукты — CRUD",
+      "description": "",
+      "item": [
+        {
+          "name": "Создать продукт",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/software-products",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Продукт Lab 5\",\n  \"responsibleUserId\": {{userId}},\n  \"currentVersion\": \"1.0\",\n  \"status\": \"IN_DEVELOPMENT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('productId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Список продуктов",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/software-products",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Продукт по ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/software-products/{{productId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Изменить продукт",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/software-products/{{productId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentVersion\": \"1.1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Версия изменена\", () => pm.expect(pm.response.json().currentVersion).to.eql(\"1.1\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Разработчик не удаляет продукт",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/software-products/{{productId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "pm.test(\"Нет новой пары токенов\", () => { const b = pm.response.json(); pm.expect(b).not.to.have.property(\"accessToken\"); pm.expect(b).not.to.have.property(\"refreshToken\"); pm.expect(b).to.have.property(\"error\"); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06. Задачи — CRUD и сброс исполнителя",
+      "description": "",
+      "item": [
+        {
+          "name": "Создать задачу",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/development-tasks",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": {\n    \"id\": {{productId}}\n  },\n  \"assignee\": {\n    \"id\": {{fireUserId}}\n  },\n  \"version\": \"1.1\",\n  \"status\": \"NEW\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('taskId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Список задач",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/development-tasks",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Задача по ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/development-tasks/{{taskId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Изменить задачу",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/development-tasks/{{taskId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"IN_PROGRESS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Статус изменён\", () => pm.expect(pm.response.json().status).to.eql(\"IN_PROGRESS\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Уволить исполнителя",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/{{fireUserId}}/fire",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 204\", () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "После увольнения исполнитель пустой",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/development-tasks/{{taskId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Исполнитель сброшен\", () => pm.expect(pm.response.json().assignee).to.eql(null));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "07. Релизы — CRUD",
+      "description": "",
+      "item": [
+        {
+          "name": "Создать релиз",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/releases",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": {\n    \"id\": {{productId}}\n  },\n  \"versionNumber\": \"1.1\",\n  \"status\": \"DRAFT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('releaseId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Список релизов",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/releases",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Релиз по ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/releases/{{releaseId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Изменить релиз",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/releases/{{releaseId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"RELEASED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Статус изменён\", () => pm.expect(pm.response.json().status).to.eql(\"RELEASED\"));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "08. Проверки релизов — CRUD",
+      "description": "",
+      "item": [
+        {
+          "name": "Создать проверку",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/release-checks",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"release\": {\n    \"id\": {{releaseId}}\n  },\n  \"checkName\": \"Проверка входа\",\n  \"mandatory\": true,\n  \"result\": \"PENDING\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('checkId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Список проверок",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/release-checks",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Проверка по ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/release-checks/{{checkId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Изменить проверку",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/release-checks/{{checkId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"result\": \"PASSED\",\n  \"mandatory\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Результат изменён\", () => pm.expect(pm.response.json().result).to.eql(\"PASSED\"));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "09. Удаление созданных данных",
+      "description": "Сначала удаляем дочерние записи. Пользователей runEmail и registerEmail оставляем для просмотра сессий в БД. Сессии администратора также остаются.",
+      "item": [
+        {
+          "name": "Удалить проверку",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/release-checks/{{checkId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 204\", () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "После удаления проверку не найти",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/release-checks/{{checkId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Удалить релиз",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/releases/{{releaseId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 204\", () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "После удаления релиз не найти",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/releases/{{releaseId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Удалить задачу",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/development-tasks/{{taskId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 204\", () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "После удаления задачу не найти",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/development-tasks/{{taskId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Удалить продукт",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/software-products/{{productId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 204\", () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "После удаления продукт не найти",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/software-products/{{productId}}",
+            "description": "",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

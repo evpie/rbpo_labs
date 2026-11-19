@@ -1,13 +1,17 @@
 spring:
   application:
     name: "24002"
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/lab3_db
-    username: lab_user
-    password: my_secret_password123
-
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/lab3_db}
+    username: ${DB_USERNAME:lab_user}
+    password: ${DB_PASSWORD:my_secret_password123}
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    open-in-view: false
+    show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET:KseniiaKseniiaKseniiaKseniiaKsen}
+  access-ttl: 15m
+  refresh-ttl: 7d

@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ${TEST_DB_URL:jdbc:h2:mem:lab5;MODE=PostgreSQL;DB_CLOSE_DELAY=-1}
+    username: ${TEST_DB_USERNAME:sa}
+    password: ${TEST_DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+jwt:
+  secret: KseniiaKseniiaKseniiaKseniiaKsen
+  access-ttl: 15m
+  refresh-ttl: 7d
