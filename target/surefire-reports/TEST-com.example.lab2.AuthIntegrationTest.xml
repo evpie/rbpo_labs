@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.example.lab2.AuthIntegrationTest" time="4.509" tests="11" errors="0" skipped="0" failures="0" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/kseniiakravchuk/Downloads/rbpo_labs/target/test-classes:/Users/kseniiakravchuk/Downloads/rbpo_labs/target/classes:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc/4.1.1/spring-boot-starter-webmvc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter/4.1.1/spring-boot-starter-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-logging/4.1.1/spring-boot-starter-logging-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/ch/qos/logback/logback-classic/1.5.38/logback-classic-1.5.38.jar:/Users/kseniiakravchuk/.m2/repository/ch/qos/logback/logback-core/1.5.38/logback-core-1.5.38.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.25.5/log4j-to-slf4j-2.25.5.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/logging/log4j/log4j-api/2.25.5/log4j-api-2.25.5.jar:/Users/kseniiakravchuk/.m2/repository/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/4.1.1/spring-boot-autoconfigure-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0.jar:/Users/kseniiakravchuk/.m2/repository/org/yaml/snakeyaml/2.6/snakeyaml-2.6.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-jackson/4.1.1/spring-boot-starter-jackson-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-jackson/4.1.1/spring-boot-jackson-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/tools/jackson/core/jackson-databind/3.1.5/jackson-databind-3.1.5.jar:/Users/kseniiakravchuk/.m2/repository/tools/jackson/core/jackson-core/3.1.5/jackson-core-3.1.5.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/4.1.1/spring-boot-starter-tomcat-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.1/spring-boot-starter-tomcat-runtime-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/11.0.24/tomcat-embed-core-11.0.24.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/11.0.24/tomcat-embed-el-11.0.24.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.24/tomcat-embed-websocket-11.0.24.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-tomcat/4.1.1/spring-boot-tomcat-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-http-converter/4.1.1/spring-boot-http-converter-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot/4.1.1/spring-boot-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-context/7.0.9/spring-context-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-web/7.0.9/spring-web-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/io/micrometer/micrometer-observation/1.17.1/micrometer-observation-1.17.1.jar:/Users/kseniiakravchuk/.m2/repository/io/micrometer/micrometer-commons/1.17.1/micrometer-commons-1.17.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-webmvc/4.1.1/spring-boot-webmvc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-servlet/4.1.1/spring-boot-servlet-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-webmvc/7.0.9/spring-webmvc-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-expression/7.0.9/spring-expression-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc-test/4.1.1/spring-boot-starter-webmvc-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-jackson-test/4.1.1/spring-boot-starter-jackson-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-webmvc-test/4.1.1/spring-boot-webmvc-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-resttestclient/4.1.1/spring-boot-resttestclient-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/4.1.1/spring-boot-starter-data-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/4.1.1/spring-boot-starter-jdbc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-data-jpa/4.1.1/spring-boot-data-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-data-commons/4.1.1/spring-boot-data-commons-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-persistence/4.1.1/spring-boot-persistence-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/data/spring-data-commons/4.1.1/spring-data-commons-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-hibernate/4.1.1/spring-boot-hibernate-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-jpa/4.1.1/spring-boot-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar:/Users/kseniiakravchuk/.m2/repository/org/hibernate/orm/hibernate-core/7.4.5.Final/hibernate-core-7.4.5.Final.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/kseniiakravchuk/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/Users/kseniiakravchuk/.m2/repository/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9.jar:/Users/kseniiakravchuk/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-orm/7.0.9/spring-orm-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/data/spring-data-jpa/4.1.1/spring-data-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-tx/7.0.9/spring-tx-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-aspects/7.0.9/spring-aspects-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-jdbc/4.1.1/spring-boot-jdbc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-sql/4.1.1/spring-boot-sql-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-transaction/4.1.1/spring-boot-transaction-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-jdbc/7.0.9/spring-jdbc-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/postgresql/postgresql/42.7.13/postgresql-42.7.13.jar:/Users/kseniiakravchuk/.m2/repository/org/checkerframework/checker-qual/3.55.1/checker-qual-3.55.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-security/4.1.1/spring-boot-starter-security-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-security/4.1.1/spring-boot-security-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-config/7.1.1/spring-security-config-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-core/7.1.1/spring-security-core-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-crypto/7.1.1/spring-security-crypto-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-web/7.1.1/spring-security-web-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-aop/7.0.9/spring-aop-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-beans/7.0.9/spring-beans-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.5/jjwt-api-0.12.5.jar:/Users/kseniiakravchuk/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.5/jjwt-impl-0.12.5.jar:/Users/kseniiakravchuk/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.5/jjwt-jackson-0.12.5.jar:/Users/kseniiakravchuk/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.5/jackson-databind-2.21.5.jar:/Users/kseniiakravchuk/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/Users/kseniiakravchuk/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.5/jackson-core-2.21.5.jar:/Users/kseniiakravchuk/.m2/repository/com/h2database/h2/2.4.240/h2-2.4.240.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-test/4.1.1/spring-boot-starter-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-test/4.1.1/spring-boot-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/4.1.1/spring-boot-test-autoconfigure-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0.jar:/Users/kseniiakravchuk/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/Users/kseniiakravchuk/.m2/repository/net/minidev/json-smart/2.6.0/json-smart-2.6.0.jar:/Users/kseniiakravchuk/.m2/repository/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0.jar:/Users/kseniiakravchuk/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/Users/kseniiakravchuk/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/Users/kseniiakravchuk/.m2/repository/net/bytebuddy/byte-buddy/1.18.11/byte-buddy-1.18.11.jar:/Users/kseniiakravchuk/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/Users/kseniiakravchuk/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0.jar:/Users/kseniiakravchuk/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11.jar:/Users/kseniiakravchuk/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/kseniiakravchuk/.m2/repository/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0.jar:/Users/kseniiakravchuk/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/kseniiakravchuk/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-core/7.0.9/spring-core-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6.jar:/Users/kseniiakravchuk/.m2/repository/org/jspecify/jspecify/1.0.1/jspecify-1.0.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-test/7.0.9/spring-test-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="catalina.useNaming" value="false"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Europe/Moscow"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="BY"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/kseniiakravchuk/Downloads/rbpo_labs/target/surefire/surefirebooter-20261120234203004_3.jar /Users/kseniiakravchuk/Downloads/rbpo_labs/target/surefire 2026-11-20T23-42-02_973-jvmRun1 surefire-20261120234203004_1tmp surefire_0-20261120234203004_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/kseniiakravchuk/Downloads/rbpo_labs/target/test-classes:/Users/kseniiakravchuk/Downloads/rbpo_labs/target/classes:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc/4.1.1/spring-boot-starter-webmvc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter/4.1.1/spring-boot-starter-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-logging/4.1.1/spring-boot-starter-logging-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/ch/qos/logback/logback-classic/1.5.38/logback-classic-1.5.38.jar:/Users/kseniiakravchuk/.m2/repository/ch/qos/logback/logback-core/1.5.38/logback-core-1.5.38.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.25.5/log4j-to-slf4j-2.25.5.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/logging/log4j/log4j-api/2.25.5/log4j-api-2.25.5.jar:/Users/kseniiakravchuk/.m2/repository/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/4.1.1/spring-boot-autoconfigure-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0.jar:/Users/kseniiakravchuk/.m2/repository/org/yaml/snakeyaml/2.6/snakeyaml-2.6.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-jackson/4.1.1/spring-boot-starter-jackson-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-jackson/4.1.1/spring-boot-jackson-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/tools/jackson/core/jackson-databind/3.1.5/jackson-databind-3.1.5.jar:/Users/kseniiakravchuk/.m2/repository/tools/jackson/core/jackson-core/3.1.5/jackson-core-3.1.5.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/4.1.1/spring-boot-starter-tomcat-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.1/spring-boot-starter-tomcat-runtime-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/11.0.24/tomcat-embed-core-11.0.24.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/11.0.24/tomcat-embed-el-11.0.24.jar:/Users/kseniiakravchuk/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.24/tomcat-embed-websocket-11.0.24.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-tomcat/4.1.1/spring-boot-tomcat-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-http-converter/4.1.1/spring-boot-http-converter-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot/4.1.1/spring-boot-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-context/7.0.9/spring-context-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-web/7.0.9/spring-web-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/io/micrometer/micrometer-observation/1.17.1/micrometer-observation-1.17.1.jar:/Users/kseniiakravchuk/.m2/repository/io/micrometer/micrometer-commons/1.17.1/micrometer-commons-1.17.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-webmvc/4.1.1/spring-boot-webmvc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-servlet/4.1.1/spring-boot-servlet-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-webmvc/7.0.9/spring-webmvc-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-expression/7.0.9/spring-expression-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc-test/4.1.1/spring-boot-starter-webmvc-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-jackson-test/4.1.1/spring-boot-starter-jackson-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-webmvc-test/4.1.1/spring-boot-webmvc-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-resttestclient/4.1.1/spring-boot-resttestclient-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/4.1.1/spring-boot-starter-data-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/4.1.1/spring-boot-starter-jdbc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-data-jpa/4.1.1/spring-boot-data-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-data-commons/4.1.1/spring-boot-data-commons-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-persistence/4.1.1/spring-boot-persistence-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/data/spring-data-commons/4.1.1/spring-data-commons-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-hibernate/4.1.1/spring-boot-hibernate-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-jpa/4.1.1/spring-boot-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar:/Users/kseniiakravchuk/.m2/repository/org/hibernate/orm/hibernate-core/7.4.5.Final/hibernate-core-7.4.5.Final.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/kseniiakravchuk/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/Users/kseniiakravchuk/.m2/repository/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9.jar:/Users/kseniiakravchuk/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-orm/7.0.9/spring-orm-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/data/spring-data-jpa/4.1.1/spring-data-jpa-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-tx/7.0.9/spring-tx-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-aspects/7.0.9/spring-aspects-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-jdbc/4.1.1/spring-boot-jdbc-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-sql/4.1.1/spring-boot-sql-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-transaction/4.1.1/spring-boot-transaction-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-jdbc/7.0.9/spring-jdbc-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/postgresql/postgresql/42.7.13/postgresql-42.7.13.jar:/Users/kseniiakravchuk/.m2/repository/org/checkerframework/checker-qual/3.55.1/checker-qual-3.55.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-security/4.1.1/spring-boot-starter-security-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-security/4.1.1/spring-boot-security-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-config/7.1.1/spring-security-config-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-core/7.1.1/spring-security-core-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-crypto/7.1.1/spring-security-crypto-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/security/spring-security-web/7.1.1/spring-security-web-7.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-aop/7.0.9/spring-aop-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-beans/7.0.9/spring-beans-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.5/jjwt-api-0.12.5.jar:/Users/kseniiakravchuk/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.5/jjwt-impl-0.12.5.jar:/Users/kseniiakravchuk/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.5/jjwt-jackson-0.12.5.jar:/Users/kseniiakravchuk/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.5/jackson-databind-2.21.5.jar:/Users/kseniiakravchuk/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/Users/kseniiakravchuk/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.5/jackson-core-2.21.5.jar:/Users/kseniiakravchuk/.m2/repository/com/h2database/h2/2.4.240/h2-2.4.240.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-starter-test/4.1.1/spring-boot-starter-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-test/4.1.1/spring-boot-test-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/4.1.1/spring-boot-test-autoconfigure-4.1.1.jar:/Users/kseniiakravchuk/.m2/repository/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0.jar:/Users/kseniiakravchuk/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.jar:/Users/kseniiakravchuk/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/Users/kseniiakravchuk/.m2/repository/net/minidev/json-smart/2.6.0/json-smart-2.6.0.jar:/Users/kseniiakravchuk/.m2/repository/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0.jar:/Users/kseniiakravchuk/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/Users/kseniiakravchuk/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/Users/kseniiakravchuk/.m2/repository/net/bytebuddy/byte-buddy/1.18.11/byte-buddy-1.18.11.jar:/Users/kseniiakravchuk/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/Users/kseniiakravchuk/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/Users/kseniiakravchuk/.m2/repository/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0.jar:/Users/kseniiakravchuk/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11.jar:/Users/kseniiakravchuk/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/kseniiakravchuk/.m2/repository/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0.jar:/Users/kseniiakravchuk/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/kseniiakravchuk/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-core/7.0.9/spring-core-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6.jar:/Users/kseniiakravchuk/.m2/repository/org/jspecify/jspecify/1.0.1/jspecify-1.0.1.jar:/Users/kseniiakravchuk/.m2/repository/org/springframework/spring-test/7.0.9/spring-test-7.0.9.jar:/Users/kseniiakravchuk/.m2/repository/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0.jar:"/>
+    <property name="test" value="AuthIntegrationTest"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/kseniiakravchuk"/>
+    <property name="user.language" value="ru"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-01-21"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/kseniiakravchuk/Downloads/rbpo_labs"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/kseniiakravchuk/Downloads/rbpo_labs/target/surefire/surefirebooter-20261120234203004_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.6+7-LTS"/>
+    <property name="user.name" value="kseniiakravchuk"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="15.7.3"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.6+7"/>
+    <property name="localRepository" value="/Users/kseniiakravchuk/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/bg/60cynvs57w917wblhrhrtls40000gn/T/"/>
+    <property name="catalina.home" value="/private/var/folders/bg/60cynvs57w917wblhrhrtls40000gn/T/tomcat.0.14949120886585635593"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
+    <property name="java.version" value="21.0.6"/>
+    <property name="user.dir" value="/Users/kseniiakravchuk/Downloads/rbpo_labs"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="88837"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="catalina.base" value="/private/var/folders/bg/60cynvs57w917wblhrhrtls40000gn/T/tomcat.0.14949120886585635593"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/kseniiakravchuk/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.6+7-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="failedRotationRollsBackUsedStatus" classname="com.example.lab2.AuthIntegrationTest" time="0.313">
+    <system-out><![CDATA[23:42:03.348 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.lab2.AuthIntegrationTest]: AuthIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:42:03.392 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.lab2.Lab2Application for test class com.example.lab2.AuthIntegrationTest
+23:42:03.419 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.lab2.AuthIntegrationTest]: AuthIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:42:03.420 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.lab2.Lab2Application for test class com.example.lab2.AuthIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-11-20T23:42:03.659+03:00  INFO 88837 --- [           main] com.example.lab2.AuthIntegrationTest     : Starting AuthIntegrationTest using Java 21.0.6 with PID 88837 (started by kseniiakravchuk in /Users/kseniiakravchuk/Downloads/rbpo_labs)
+2026-11-20T23:42:03.660+03:00  INFO 88837 --- [           main] com.example.lab2.AuthIntegrationTest     : No active profile set, falling back to 1 default profile: "default"
+2026-11-20T23:42:03.660+03:00 DEBUG 88837 --- [           main] o.s.boot.SpringApplication               : Loading source class com.example.lab2.Lab2Application
+2026-11-20T23:42:03.669+03:00 DEBUG 88837 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@71926a36
+2026-11-20T23:42:03.789+03:00 DEBUG 88837 --- [           main] ySourcesPropertyResolver$DefaultResolver : Found key 'TEST_DB_URL' in PropertySource 'systemEnvironment' with value of type String
+2026-11-20T23:42:03.890+03:00  INFO 88837 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-20T23:42:03.896+03:00 DEBUG 88837 --- [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.example.lab2'. Automatic @Repository and @Entity scanning is enabled.
+2026-11-20T23:42:03.913+03:00  INFO 88837 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 6 JPA repository interfaces.
+2026-11-20T23:42:04.104+03:00 DEBUG 88837 --- [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: /Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.jar
+2026-11-20T23:42:04.104+03:00 DEBUG 88837 --- [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: /Users/kseniiakravchuk/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.jar
+2026-11-20T23:42:04.104+03:00 DEBUG 88837 --- [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2026-11-20T23:42:04.113+03:00  INFO 88837 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 0 (http)
+2026-11-20T23:42:04.119+03:00  INFO 88837 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-20T23:42:04.119+03:00  INFO 88837 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-11-20T23:42:04.137+03:00 DEBUG 88837 --- [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2026-11-20T23:42:04.137+03:00  INFO 88837 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 468 ms
+2026-11-20T23:42:04.149+03:00 DEBUG 88837 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2026-11-20T23:42:04.149+03:00 DEBUG 88837 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2026-11-20T23:42:04.157+03:00 DEBUG 88837 --- [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
+2026-11-20T23:42:04.158+03:00 DEBUG 88837 --- [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+2026-11-20T23:42:04.158+03:00 DEBUG 88837 --- [           main] .DelegatingFilterProxyRegistrationBean$1 : Filter 'springSecurityFilterChain' configured for use
+2026-11-20T23:42:04.158+03:00 DEBUG 88837 --- [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
+2026-11-20T23:42:04.210+03:00  INFO 88837 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-20T23:42:04.229+03:00  INFO 88837 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-11-20T23:42:04.362+03:00  INFO 88837 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-20T23:42:04.372+03:00  INFO 88837 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-20T23:42:04.416+03:00  INFO 88837 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@64d42d3d
+2026-11-20T23:42:04.417+03:00  INFO 88837 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-20T23:42:04.443+03:00  INFO 88837 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/lab5_cleanup_verify]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.4
+	Default catalog/schema: lab5_cleanup_verify/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-20T23:42:04.753+03:00  INFO 88837 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-20T23:42:04.760+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : set client_min_messages = WARNING
+2026-11-20T23:42:04.761+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists development_task drop constraint if exists FKnt1bwf5vs9eik5k1xk38tst0a
+2026-11-20T23:42:04.761+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists development_task drop constraint if exists FKanecjatkg6qljd2ml0a5n7twy
+2026-11-20T23:42:04.762+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists product_release drop constraint if exists FK2hr9yw5wcy80ebln9xbta1spq
+2026-11-20T23:42:04.762+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists release_check drop constraint if exists FKtt2fvxvlymjs2ra0c7y12xgj
+2026-11-20T23:42:04.762+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : drop table if exists development_task cascade
+2026-11-20T23:42:04.762+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : drop table if exists product_release cascade
+2026-11-20T23:42:04.763+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : drop table if exists release_check cascade
+2026-11-20T23:42:04.763+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : drop table if exists software_product cascade
+2026-11-20T23:42:04.763+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : drop table if exists user_sessions cascade
+2026-11-20T23:42:04.763+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : drop table if exists users cascade
+2026-11-20T23:42:04.765+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : create table development_task (assignee_id bigint, id bigint generated by default as identity, product_id bigint, status varchar(255), version varchar(255), primary key (id))
+2026-11-20T23:42:04.770+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : create table product_release (id bigint generated by default as identity, product_id bigint, release_date timestamp(6), status varchar(255), version_number varchar(255), primary key (id))
+2026-11-20T23:42:04.774+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : create table release_check (is_mandatory boolean not null, id bigint generated by default as identity, release_id bigint, check_name varchar(255), result varchar(255), primary key (id))
+2026-11-20T23:42:04.776+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : create table software_product (id bigint generated by default as identity, responsible_user_id bigint, current_version varchar(255), name varchar(255), status varchar(255), primary key (id))
+2026-11-20T23:42:04.780+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : create table user_sessions (access_token_expiry timestamp(6) with time zone not null, refresh_token_expiry timestamp(6) with time zone not null, id uuid not null, access_token TEXT not null, device_id varchar(255), refresh_token TEXT not null unique, status varchar(255) not null check ((status in ('ACTIVE','USED','REVOKED'))), username varchar(255) not null, primary key (id))
+2026-11-20T23:42:04.785+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : create table users (is_active boolean not null, id bigint generated by default as identity, email varchar(255) not null unique, name varchar(255), password varchar(255), role varchar(255) check ((role in ('ADMIN','DEVELOPER'))), primary key (id))
+2026-11-20T23:42:04.789+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists development_task add constraint FKnt1bwf5vs9eik5k1xk38tst0a foreign key (assignee_id) references users
+2026-11-20T23:42:04.791+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists development_task add constraint FKanecjatkg6qljd2ml0a5n7twy foreign key (product_id) references software_product
+2026-11-20T23:42:04.792+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists product_release add constraint FK2hr9yw5wcy80ebln9xbta1spq foreign key (product_id) references software_product
+2026-11-20T23:42:04.794+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : alter table if exists release_check add constraint FKtt2fvxvlymjs2ra0c7y12xgj foreign key (release_id) references product_release
+2026-11-20T23:42:04.795+03:00  INFO 88837 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-20T23:42:04.825+03:00  INFO 88837 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-20T23:42:05.410+03:00  INFO 88837 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-11-20T23:42:05.517+03:00 DEBUG 88837 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 31 mappings in 'requestMappingHandlerMapping'
+2026-11-20T23:42:05.539+03:00 DEBUG 88837 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-11-20T23:42:05.553+03:00 DEBUG 88837 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-11-20T23:42:05.577+03:00 DEBUG 88837 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-11-20T23:42:05.633+03:00  INFO 88837 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 52721 (http) with context path '/'
+2026-11-20T23:42:05.637+03:00 DEBUG 88837 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+
+============================
+CONDITIONS EVALUATION REPORT
+============================
+
+
+Positive matches:
+-----------------
+
+   AopAutoConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.aop.auto=true) matched (OnPropertyCondition)
+
+   AopAutoConfiguration.AspectJAutoProxyingConfiguration matched:
+      - @ConditionalOnClass found required class 'org.aspectj.weaver.Advice' (OnClassCondition)
+
+   AopAutoConfiguration.AspectJAutoProxyingConfiguration.CglibAutoProxyConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
+
+   ApplicationAvailabilityAutoConfiguration#applicationAvailability matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.availability.ApplicationAvailability; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataJpaRepositoriesAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.data.jpa.repository.JpaRepository' (OnClassCondition)
+      - @ConditionalOnBooleanProperty (spring.data.jpa.repositories.enabled=true) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: javax.sql.DataSource; SearchStrategy: all) found bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+      - @ConditionalOnMissingBean (types: io.r2dbc.spi.ConnectionFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceAutoConfiguration.PooledDataSourceConfiguration matched:
+      - AnyNestedCondition 1 matched 1 did not; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.PooledDataSourceAvailable PooledDataSource found supported DataSource; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.ExplicitType @ConditionalOnProperty (spring.datasource.type) did not find property 'spring.datasource.type' (DataSourceAutoConfiguration.PooledDataSourceCondition)
+      - @ConditionalOnMissingBean (types: javax.sql.DataSource,javax.sql.XADataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceAutoConfiguration.PooledDataSourceConfiguration#jdbcConnectionDetails matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.jdbc.autoconfigure.JdbcConnectionDetails; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceConfiguration.Hikari matched:
+      - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+      - @ConditionalOnProperty (spring.datasource.type=com.zaxxer.hikari.HikariDataSource) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceInitializationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.jdbc.datasource.init.DatabasePopulator' (OnClassCondition)
+      - SQL InitializationDatabase Initialization default value is EMBEDDED (OnSqlInitializationCondition)
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.boot.sql.autoconfigure.init.ApplicationScriptDatabaseInitializer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.HikariPoolDataSourceMetadataProviderConfiguration matched:
+      - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+
+   DataSourceTransactionManagerAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.transaction.TransactionManager' (OnClassCondition)
+
+   DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+
+   DataWebAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.data.web.PageableHandlerMethodArgumentResolver', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.PageableHandlerMethodArgumentResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataWebAutoConfiguration#pageableCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataWebAutoConfiguration#sortCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.config.SortHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataWebAutoConfiguration#springDataWebSettings matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.config.SpringDataWebSettings; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DispatcherServletAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
+      - Default DispatcherServlet did not find dispatcher servlet beans (DispatcherServletAutoConfiguration.DefaultDispatcherServletCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
+      - DispatcherServlet Registration did not find servlet registration bean (DispatcherServletAutoConfiguration.DispatcherServletRegistrationCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration#dispatcherServletRegistration matched:
+      - @ConditionalOnBean (names: dispatcherServlet types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet' (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   ErrorMvcAutoConfiguration#basicErrorController matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.error.ErrorController; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration#errorAttributes matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.error.ErrorAttributes; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration.DefaultErrorViewResolverConfiguration#conventionErrorViewResolver matched:
+      - @ConditionalOnBean (types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet'; @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.autoconfigure.error.ErrorViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.web.error.whitelabel.enabled=true) matched (OnPropertyCondition)
+      - ErrorTemplate Missing did not find error template view (ErrorMvcAutoConfiguration.ErrorTemplateMissingCondition)
+
+   ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration#beanNameViewResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.BeanNameViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration#defaultErrorView matched:
+      - @ConditionalOnMissingBean (names: error; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HibernateJpaAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean', 'jakarta.persistence.EntityManager', 'org.hibernate.engine.spi.SessionImplementor' (OnClassCondition)
+
+   HibernateJpaConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+
+   HttpEncodingAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.filter.CharacterEncodingFilter' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBooleanProperty (spring.servlet.encoding.enabled=true) matched (OnPropertyCondition)
+
+   HttpEncodingAutoConfiguration#characterEncodingFilter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.filter.CharacterEncodingFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HttpMessageConvertersAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.http.converter.HttpMessageConverter' (OnClassCondition)
+      - NoneNestedConditions 0 matched 1 did not; NestedCondition on HttpMessageConvertersAutoConfiguration.NotReactiveWebApplicationCondition.ReactiveWebApplication did not find reactive web application classes (HttpMessageConvertersAutoConfiguration.NotReactiveWebApplicationCondition)
+
+   HttpMessageConvertersAutoConfiguration.StringHttpMessageConverterConfiguration#stringHttpMessageConvertersCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.http.converter.StringHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'tools.jackson.databind.json.JsonMapper' (OnClassCondition)
+
+   JacksonAutoConfiguration#jacksonJsonMapper matched:
+      - @ConditionalOnMissingBean (types: tools.jackson.databind.json.JsonMapper; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration#jsonFactory matched:
+      - @ConditionalOnMissingBean (types: tools.jackson.core.json.JsonFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration#jsonMapperBuilder matched:
+      - @ConditionalOnMissingBean (types: tools.jackson.databind.json.JsonMapper$Builder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration.JsonProblemDetailsConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.http.ProblemDetail' (OnClassCondition)
+
+   JacksonHttpMessageConvertersConfiguration.JacksonJsonHttpMessageConverterConfiguration matched:
+      - @ConditionalOnClass found required class 'tools.jackson.databind.json.JsonMapper' (OnClassCondition)
+      - @ConditionalOnProperty (spring.http.converters.preferred-json-mapper=jackson) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: tools.jackson.databind.json.JsonMapper; SearchStrategy: all) found bean 'jacksonJsonMapper' (OnBeanCondition)
+
+   JacksonHttpMessageConvertersConfiguration.JacksonJsonHttpMessageConverterConfiguration#jacksonJsonHttpMessageConvertersCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.http.converter.json.JacksonJsonHttpMessageConverter ignored: org.springframework.hateoas.server.mvc.TypeConstrainedJacksonJsonHttpMessageConverter,org.springframework.data.rest.webmvc.alps.AlpsJacksonJsonHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JdbcClientAutoConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate; SearchStrategy: all) found a single bean 'namedParameterJdbcTemplate'; @ConditionalOnMissingBean (types: org.springframework.jdbc.core.simple.JdbcClient; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JdbcTemplateAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate' (OnClassCondition)
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+
+   JdbcTemplateConfiguration matched:
+      - @ConditionalOnMissingBean (types: org.springframework.jdbc.core.JdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#entityManagerFactory matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#entityManagerFactoryBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.jpa.EntityManagerFactoryBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#jpaVendorAdapter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.JpaVendorAdapter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#transactionManager matched:
+      - @ConditionalOnMissingBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration.PersistenceManagedTypesConfiguration matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration.PersistenceManagedTypesConfiguration#persistenceManagedTypes matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.persistenceunit.PersistenceManagedTypes; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JtaAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.transaction.Transaction' (OnClassCondition)
+      - @ConditionalOnBooleanProperty (spring.jta.enabled=true) matched (OnPropertyCondition)
+
+   LifecycleAutoConfiguration#defaultLifecycleProcessor matched:
+      - @ConditionalOnMissingBean (names: lifecycleProcessor; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   MultipartAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBooleanProperty (spring.servlet.multipart.enabled=true) matched (OnPropertyCondition)
+
+   MultipartAutoConfiguration#multipartConfigElement matched:
+      - @ConditionalOnMissingBean (types: jakarta.servlet.MultipartConfigElement; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MultipartAutoConfiguration#multipartResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   NamedParameterJdbcTemplateConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.jdbc.core.JdbcTemplate; SearchStrategy: all) found a single bean 'jdbcTemplate'; @ConditionalOnMissingBean (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   PersistenceExceptionTranslationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor' (OnClassCondition)
+
+   PersistenceExceptionTranslationAutoConfiguration#persistenceExceptionTranslationPostProcessor matched:
+      - @ConditionalOnBooleanProperty (spring.persistence.exceptiontranslation.enabled=true) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   PropertyPlaceholderAutoConfiguration#propertySourcesPlaceholderConfigurer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.context.support.PropertySourcesPlaceholderConfigurer; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   SecurityAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.authentication.DefaultAuthenticationEventPublisher' (OnClassCondition)
+
+   SecurityAutoConfiguration#authenticationEventPublisher matched:
+      - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationEventPublisher; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SecurityFilterAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer', 'org.springframework.security.config.http.SessionCreationPolicy' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   SecurityFilterAutoConfiguration#securityFilterChainRegistration matched:
+      - @ConditionalOnBean (names: springSecurityFilterChain; SearchStrategy: all) found bean 'springSecurityFilterChain' (OnBeanCondition)
+
+   ServletWebSecurityAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   ServletWebSecurityAutoConfiguration.EnableWebSecurityConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ServletWebSecurityAutoConfiguration.PathPatternRequestMatcherBuilderConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.webmvc.autoconfigure.DispatcherServletPath' (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.boot.webmvc.autoconfigure.DispatcherServletPath; SearchStrategy: all) found bean 'dispatcherServletRegistration' (OnBeanCondition)
+
+   ServletWebSecurityAutoConfiguration.PathPatternRequestMatcherBuilderConfiguration#pathPatternRequestMatcherBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher$Builder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SslAutoConfiguration#sslBundleRegistry matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.ssl.SslBundleRegistry,org.springframework.boot.ssl.SslBundles; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskExecutionAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor' (OnClassCondition)
+
+   TaskExecutorConfigurations.AsyncConfigurerConfiguration matched:
+      - @ConditionalOnMissingBean (types: org.springframework.scheduling.annotation.AsyncConfigurer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskExecutorConfigurations.TaskExecutorConfiguration matched:
+      - AnyNestedCondition 1 matched 1 did not; NestedCondition on TaskExecutorConfigurations.OnExecutorCondition.ModelCondition @ConditionalOnProperty (spring.task.execution.mode=force) did not find property 'spring.task.execution.mode'; NestedCondition on TaskExecutorConfigurations.OnExecutorCondition.ExecutorBeanCondition @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) did not find any beans (TaskExecutorConfigurations.OnExecutorCondition)
+
+   TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutor matched:
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskExecutorConfigurations.ThreadPoolTaskExecutorBuilderConfiguration#threadPoolTaskExecutorBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.ThreadPoolTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskSchedulingAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler' (OnClassCondition)
+
+   TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskSchedulingConfigurations.ThreadPoolTaskSchedulerBuilderConfiguration#threadPoolTaskSchedulerBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.ThreadPoolTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TomcatServletWebServerAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.ServletRequest', 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol', 'org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   TomcatServletWebServerAutoConfiguration#tomcatServletWebServerFactory matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.web.server.servlet.ServletWebServerFactory; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   TomcatWebServerConfiguration matched:
+      - @ConditionalOnWarDeployment the application is not deployed as a WAR file. (OnWarDeploymentCondition)
+
+   TomcatWebServerConfiguration.TomcatWebSocketConfiguration matched:
+      - @ConditionalOnClass found required class 'org.apache.tomcat.websocket.server.WsSci' (OnClassCondition)
+
+   TransactionAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+
+   TransactionAutoConfiguration.EnableTransactionManagementConfiguration matched:
+      - @ConditionalOnBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) found bean 'transactionManager'; @ConditionalOnMissingBean (types: org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TransactionAutoConfiguration.EnableTransactionManagementConfiguration.CglibAutoProxyConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
+
+   TransactionAutoConfiguration.TransactionTemplateConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.transaction.PlatformTransactionManager; SearchStrategy: all) found a single bean 'transactionManager' (OnBeanCondition)
+
+   TransactionAutoConfiguration.TransactionTemplateConfiguration#transactionTemplate matched:
+      - @ConditionalOnMissingBean (types: org.springframework.transaction.support.TransactionOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TransactionManagerCustomizationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+
+   TransactionManagerCustomizationAutoConfiguration#platformTransactionManagerCustomizers matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.transaction.autoconfigure.TransactionManagerCustomizers; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration#formContentFilter matched:
+      - @ConditionalOnBooleanProperty (spring.mvc.formcontent.filter.enabled=true) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.web.filter.FormContentFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.EnableWebMvcConfiguration#flashMapManager matched:
+      - @ConditionalOnMissingBean (names: flashMapManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.EnableWebMvcConfiguration#localeResolver matched:
+      - @ConditionalOnMissingBean (names: localeResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.EnableWebMvcConfiguration#viewNameTranslator matched:
+      - @ConditionalOnMissingBean (names: viewNameTranslator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#defaultViewResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.InternalResourceViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#requestContextFilter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.context.request.RequestContextListener,org.springframework.web.filter.RequestContextFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#viewResolver matched:
+      - @ConditionalOnBean (types: org.springframework.web.servlet.ViewResolver; SearchStrategy: all) found beans 'defaultViewResolver', 'beanNameViewResolver', 'mvcViewResolver'; @ConditionalOnMissingBean (names: viewResolver types: org.springframework.web.servlet.view.ContentNegotiatingViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+   AopAutoConfiguration.AspectJAutoProxyingConfiguration.JdkDynamicAutoProxyConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=false) did not find property 'spring.aop.proxy-target-class' (OnPropertyCondition)
+
+   AopAutoConfiguration.ClassProxyingConfiguration:
+      Did not match:
+         - @ConditionalOnMissingClass found unwanted class 'org.aspectj.weaver.Advice' (OnClassCondition)
+
+   DataJpaRepositoriesAutoConfiguration#entityManagerFactoryBootstrapExecutorCustomizer:
+      Did not match:
+         - @ConditionalOnProperty (spring.data.jpa.repositories.bootstrap-mode=deferred) did not find property 'spring.data.jpa.repositories.bootstrap-mode' (OnPropertyCondition)
+
+   DataRepositoryMetricsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean did not find required type 'io.micrometer.core.instrument.MeterRegistry' (OnBeanCondition)
+
+   DataSourceAutoConfiguration.EmbeddedDatabaseConfiguration:
+      Did not match:
+         - EmbeddedDataSource spring.datasource.url is set (DataSourceAutoConfiguration.EmbeddedDatabaseCondition)
+
+   DataSourceCheckpointRestoreConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.crac.Resource' (OnClassCondition)
+
+   DataSourceConfiguration.Dbcp2:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.commons.dbcp2.BasicDataSource' (OnClassCondition)
+
+   DataSourceConfiguration.Generic:
+      Did not match:
+         - @ConditionalOnProperty (spring.datasource.type) did not find property 'spring.datasource.type' (OnPropertyCondition)
+
+   DataSourceConfiguration.OracleUcp:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'oracle.ucp.jdbc.PoolDataSourceImpl', 'oracle.jdbc.OracleConnection' (OnClassCondition)
+
+   DataSourceConfiguration.Tomcat:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSource' (OnClassCondition)
+
+   DataSourceHealthContributorAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.health.autoconfigure.contributor.ConditionalOnEnabledHealthIndicator' (OnClassCondition)
+
+   DataSourceJmxConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jmx.enabled=true) found different value in property 'spring.jmx.enabled' (OnPropertyCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.CommonsDbcp2PoolDataSourceMetadataProviderConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.commons.dbcp2.BasicDataSource' (OnClassCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.OracleUcpPoolDataSourceMetadataProviderConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'oracle.ucp.jdbc.PoolDataSource', 'oracle.jdbc.OracleConnection' (OnClassCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.TomcatDataSourcePoolMetadataProviderConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSource' (OnClassCondition)
+
+   DataSourcePoolMetricsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+
+   DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration#transactionManager:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) found beans of type 'org.springframework.transaction.TransactionManager' transactionManager (OnBeanCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletConfiguration#multipartResolver:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans of type org.springframework.web.multipart.MultipartResolver (OnBeanCondition)
+
+   GsonHttpMessageConvertersConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.google.gson.Gson' (OnClassCondition)
+
+   HibernateMetricsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+
+   Jackson2HttpMessageConvertersConfiguration.MappingJackson2HttpMessageConverterConfiguration:
+      Did not match:
+         - AnyNestedCondition 0 matched 2 did not; NestedCondition on Jackson2HttpMessageConvertersConfiguration.PreferJackson2OrJacksonUnavailableCondition.JacksonUnavailable @ConditionalOnMissingBean (types: org.springframework.boot.http.converter.autoconfigure.JacksonHttpMessageConvertersConfiguration$JacksonJsonHttpMessageConvertersCustomizer; SearchStrategy: all) found beans of type 'org.springframework.boot.http.converter.autoconfigure.JacksonHttpMessageConvertersConfiguration$JacksonJsonHttpMessageConvertersCustomizer' jacksonJsonHttpMessageConvertersCustomizer; NestedCondition on Jackson2HttpMessageConvertersConfiguration.PreferJackson2OrJacksonUnavailableCondition.Jackson2Preferred @ConditionalOnProperty (spring.http.converters.preferred-json-mapper=jackson2) did not find property 'spring.http.converters.preferred-json-mapper' (Jackson2HttpMessageConvertersConfiguration.PreferJackson2OrJacksonUnavailableCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'com.fasterxml.jackson.databind.ObjectMapper' (OnClassCondition)
+
+   Jackson2HttpMessageConvertersConfiguration.MappingJackson2XmlHttpMessageConverterConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.fasterxml.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+
+   JacksonAutoConfiguration.CborConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'tools.jackson.dataformat.cbor.CBORMapper' (OnClassCondition)
+
+   JacksonAutoConfiguration.XmlConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'tools.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+
+   JacksonHttpMessageConvertersConfiguration.JacksonXmlHttpMessageConverterConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'tools.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+
+   JmxAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jmx.enabled=true) found different value in property 'spring.jmx.enabled' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.jmx.export.MBeanExporter' (OnClassCondition)
+
+   JndiDataSourceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'spring.datasource.jndi-name' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+
+   JndiJtaConfiguration:
+      Did not match:
+         - @ConditionalOnJndi JNDI environment is not available (OnJndiCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.transaction.jta.JtaTransactionManager' (OnClassCondition)
+
+   JpaBaseConfiguration.JpaWebConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jpa.open-in-view=true) found different value in property 'spring.jpa.open-in-view' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+   JsonbHttpMessageConvertersConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'jakarta.json.bind.Jsonb' (OnClassCondition)
+
+   KotlinSerializationHttpMessageConvertersConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'kotlinx.serialization.Serializable', 'kotlinx.serialization.json.Json' (OnClassCondition)
+
+   LazyConnectionDataSourceConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (spring.datasource.connection-fetch=lazy) did not find property 'spring.datasource.connection-fetch' (OnPropertyCondition)
+
+   ManagementWebSecurityAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointAutoConfiguration' (OnClassCondition)
+
+   MessageSourceAutoConfiguration:
+      Did not match:
+         - ResourceBundle did not find bundle with basename messages (MessageSourceAutoConfiguration.ResourceBundleCondition)
+
+   ProjectInfoAutoConfiguration#buildProperties:
+      Did not match:
+         - @ConditionalOnResource did not find resource '${spring.info.build.location:classpath:META-INF/build-info.properties}' (OnResourceCondition)
+
+   ProjectInfoAutoConfiguration#gitProperties:
+      Did not match:
+         - GitResource did not find git info at classpath:git.properties (ProjectInfoAutoConfiguration.GitResourceAvailableCondition)
+
+   RSocketSecurityAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.rsocket.server.RSocketServerCustomizer' (OnClassCondition)
+
+   ReactiveManagementWebSecurityAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointAutoConfiguration' (OnClassCondition)
+
+   ReactiveUserDetailsServiceAutoConfiguration:
+      Did not match:
+         - AnyNestedCondition 0 matched 2 did not; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.RSocketEnabledOrReactiveWebApplication.ReactiveWebApplicationCondition did not find reactive web application classes; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.RSocketEnabledOrReactiveWebApplication.RSocketSecurityEnabledCondition @ConditionalOnBean (types: org.springframework.messaging.rsocket.annotation.support.RSocketMessageHandler; SearchStrategy: all) did not find any beans of type org.springframework.messaging.rsocket.annotation.support.RSocketMessageHandler (ReactiveUserDetailsServiceAutoConfiguration.RSocketEnabledOrReactiveWebApplication)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.authentication.ReactiveAuthenticationManager' (OnClassCondition)
+         - AnyNestedCondition 1 matched 2 did not; NestedCondition on MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'spring.security.user.password'; NestedCondition on MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'spring.security.user.name'; NestedCondition on MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector', 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured)
+
+   ReactiveWebSecurityAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'reactor.core.publisher.Flux' (OnClassCondition)
+
+   SecurityAutoConfiguration.SecurityDataConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.security.data.repository.query.SecurityEvaluationContextExtension' (OnClassCondition)
+
+   ServletHttpExchangesAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean did not find required type 'org.springframework.boot.actuate.web.exchanges.HttpExchangeRepository' (OnBeanCondition)
+
+   ServletManagementContextAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties' (OnClassCondition)
+
+   ServletMappingsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint' (OnClassCondition)
+
+   ServletWebSecurityAutoConfiguration.SecurityFilterChainConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' filterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   ServletWebServerConfiguration#forwardedHeaderFilter:
+      Did not match:
+         - @ConditionalOnProperty (server.forward-headers-strategy=framework) did not find property 'server.forward-headers-strategy' (OnPropertyCondition)
+
+   SpringApplicationAdminJmxAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.application.admin.enabled=true) did not find property 'spring.application.admin.enabled' (OnPropertyCondition)
+
+   TaskExecutorConfigurations.AsyncConfigurerWrapperConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.scheduling.annotation.AsyncConfigurer; SearchStrategy: all) did not find any beans of type org.springframework.scheduling.annotation.AsyncConfigurer (OnBeanCondition)
+
+   TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilderVirtualThreads:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder' simpleAsyncTaskExecutorBuilder (OnBeanCondition)
+
+   TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutorVirtualThreads:
+      Did not match:
+         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+
+   TaskExecutorConfigurations.TaskExecutorContextPropagationConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.context.ContextSnapshot' (OnClassCondition)
+
+   TaskSchedulingAutoConfiguration#scheduledBeanLazyInitializationExcludeFilter:
+      Did not match:
+         - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.scheduling.config.internalScheduledAnnotationProcessor (OnBeanCondition)
+
+   TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilderVirtualThreads:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder' simpleAsyncTaskSchedulerBuilder (OnBeanCondition)
+
+   TaskSchedulingConfigurations.TaskSchedulerConfiguration:
+      Did not match:
+         - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.scheduling.config.internalScheduledAnnotationProcessor (OnBeanCondition)
+
+   TomcatMetricsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.core.instrument.binder.tomcat.TomcatMetrics' (OnClassCondition)
+
+   TomcatReactiveManagementContextAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextFactory' (OnClassCondition)
+
+   TomcatReactiveWebServerAutoConfiguration:
+      Did not match:
+         - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
+
+   TomcatServletManagementContextAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextFactory' (OnClassCondition)
+
+   TomcatServletWebServerAutoConfiguration#tomcatForwardedHeaderFilterCustomizer:
+      Did not match:
+         - @ConditionalOnProperty (server.forward-headers-strategy=framework) did not find property 'server.forward-headers-strategy' (OnPropertyCondition)
+
+   TomcatWebServerConfiguration#tomcatVirtualThreadsProtocolHandlerCustomizer:
+      Did not match:
+         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+
+   TransactionAutoConfiguration#transactionalOperator:
+      Did not match:
+         - @ConditionalOnSingleCandidate (types: org.springframework.transaction.ReactiveTransactionManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TransactionAutoConfiguration.AspectJTransactionManagementConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.transaction.aspectj.AbstractTransactionAspect; SearchStrategy: all) did not find any beans of type org.springframework.transaction.aspectj.AbstractTransactionAspect (OnBeanCondition)
+
+   TransactionAutoConfiguration.EnableTransactionManagementConfiguration.JdkDynamicAutoProxyConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=false) did not find property 'spring.aop.proxy-target-class' (OnPropertyCondition)
+
+   UserDetailsServiceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.authentication.AuthenticationManagerResolver,org.springframework.security.oauth2.jwt.JwtDecoder; SearchStrategy: all) found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' customUserDetailsService (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+         - AnyNestedCondition 1 matched 2 did not; NestedCondition on MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'spring.security.user.password'; NestedCondition on MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'spring.security.user.name'; NestedCondition on MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector', 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (MissingAlternativeUserDetailsManagerOrUserPropertiesConfigured)
+
+   WebMvcAutoConfiguration#hiddenHttpMethodFilter:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.mvc.hiddenmethod.filter.enabled=true) did not find property 'spring.mvc.hiddenmethod.filter.enabled' (OnPropertyCondition)
+
+   WebMvcAutoConfiguration.ProblemDetailsErrorHandlingConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.mvc.problemdetails.enabled=true) did not find property 'spring.mvc.problemdetails.enabled' (OnPropertyCondition)
+
+   WebMvcAutoConfiguration.ResourceChainCustomizerConfiguration:
+      Did not match:
+         - @ConditionalOnEnabledResourceChain did not find class org.webjars.WebJarVersionLocator (OnEnabledResourceChainCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#beanNameViewResolver:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.BeanNameViewResolver; SearchStrategy: all) found beans of type 'org.springframework.web.servlet.view.BeanNameViewResolver' beanNameViewResolver (OnBeanCondition)
+
+   WebMvcHealthEndpointExtensionAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.health.actuate.endpoint.HealthEndpoint' (OnClassCondition)
+
+   WebMvcMappingsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint' (OnClassCondition)
+
+   WebMvcObservationAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.micrometer.observation.autoconfigure.ObservationProperties' (OnClassCondition)
+
+   XADataSourceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.boot.jdbc.XADataSourceWrapper; SearchStrategy: all) did not find any beans of type org.springframework.boot.jdbc.XADataSourceWrapper (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'jakarta.transaction.TransactionManager', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+
+    org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration
+
+    org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
+
+    org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+
+    org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration
+
+    org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+
+
+
+2026-11-20T23:42:05.641+03:00  INFO 88837 --- [           main] com.example.lab2.AuthIntegrationTest     : Started AuthIntegrationTest in 2.08 seconds (process running for 2.605)
+2026-11-20T23:42:05.641+03:00 DEBUG 88837 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2026-11-20T23:42:05.798+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from users u1_0
+2026-11-20T23:42:05.883+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+Создан админ: admin@test.com / admin123
+2026-11-20T23:42:05.890+03:00 DEBUG 88837 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-11-20T23:42:05.907+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:05.913+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:05.915+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:05.985+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.027+03:00  INFO 88837 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-20T23:42:06.027+03:00  INFO 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-20T23:42:06.027+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-11-20T23:42:06.027+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-11-20T23:42:06.028+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4c902a72
+2026-11-20T23:42:06.028+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@204bd52d
+2026-11-20T23:42:06.028+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-11-20T23:42:06.028+03:00  INFO 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-20T23:42:06.034+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:06.037+03:00 DEBUG 88837 --- [o-auto-1-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:06.048+03:00 DEBUG 88837 --- [o-auto-1-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com, deviceId=test-device, password=secret123}]
+2026-11-20T23:42:06.075+03:00 DEBUG 88837 --- [o-auto-1-exec-1] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.164+03:00 DEBUG 88837 --- [o-auto-1-exec-1] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.169+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.169+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImJjN (truncated)...]
+2026-11-20T23:42:06.175+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.184+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.185+03:00 DEBUG 88837 --- [o-auto-1-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.185+03:00 DEBUG 88837 --- [o-auto-1-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImJjN (truncated)...]
+2026-11-20T23:42:06.189+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.191+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.195+03:00 DEBUG 88837 --- [o-auto-1-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleRuntime(RuntimeException)
+2026-11-20T23:42:06.195+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.196+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Внутренняя ошибка сервера}]
+2026-11-20T23:42:06.196+03:00 DEBUG 88837 --- [o-auto-1-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Test insert failure]
+2026-11-20T23:42:06.196+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
+2026-11-20T23:42:06.200+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.202+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/kseniiakravchuk/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="onlyOneConcurrentRefreshSucceeds" classname="com.example.lab2.AuthIntegrationTest" time="0.166">
+    <system-out><![CDATA[2026-11-20T23:42:06.208+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:06.209+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.210+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.211+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:06.280+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.283+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:06.283+03:00 DEBUG 88837 --- [o-auto-1-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:06.284+03:00 DEBUG 88837 --- [o-auto-1-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com, deviceId=test-device, password=secret123}]
+2026-11-20T23:42:06.284+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.353+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.354+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.354+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYyZ (truncated)...]
+2026-11-20T23:42:06.354+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.356+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.356+03:00 DEBUG 88837 --- [o-auto-1-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.357+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.357+03:00 DEBUG 88837 --- [o-auto-1-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYyZ (truncated)...]
+2026-11-20T23:42:06.357+03:00 DEBUG 88837 --- [o-auto-1-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.357+03:00 DEBUG 88837 --- [o-auto-1-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYyZ (truncated)...]
+2026-11-20T23:42:06.358+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.358+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.358+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.361+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.362+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:06.364+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.364+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImFlM (truncated)...]
+2026-11-20T23:42:06.364+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.364+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.365+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:06.367+03:00 DEBUG 88837 --- [o-auto-1-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.367+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.367+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Refresh-токен уже использован}]
+2026-11-20T23:42:06.368+03:00 DEBUG 88837 --- [o-auto-1-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Refresh-токен уже использован"]
+2026-11-20T23:42:06.368+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:06.369+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+2026-11-20T23:42:06.369+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.371+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+]]></system-out>
+  </testcase>
+  <testcase name="loginRotationAndReplayKeepHistory" classname="com.example.lab2.AuthIntegrationTest" time="0.197">
+    <system-out><![CDATA[2026-11-20T23:42:06.375+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:06.376+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.376+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.377+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.377+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:06.439+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.444+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:06.444+03:00 DEBUG 88837 --- [o-auto-1-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:06.445+03:00 DEBUG 88837 --- [o-auto-1-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com, deviceId=test-device, password=secret123}]
+2026-11-20T23:42:06.446+03:00 DEBUG 88837 --- [o-auto-1-exec-7] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.507+03:00 DEBUG 88837 --- [o-auto-1-exec-7] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.509+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.509+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYzY (truncated)...]
+2026-11-20T23:42:06.509+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.510+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.526+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.527+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/users", parameters={}
+2026-11-20T23:42:06.527+03:00 DEBUG 88837 --- [o-auto-1-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.UserController#getAll()
+2026-11-20T23:42:06.529+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.529+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.530+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.example.lab2.model.User@36f6733b]]
+2026-11-20T23:42:06.540+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.541+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.541+03:00 DEBUG 88837 --- [o-auto-1-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.542+03:00 DEBUG 88837 --- [o-auto-1-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYzY (truncated)...]
+2026-11-20T23:42:06.543+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.544+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.545+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.546+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:06.547+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.547+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6IjMwN (truncated)...]
+2026-11-20T23:42:06.547+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.548+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.549+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.550+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.551+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.551+03:00 DEBUG 88837 --- [o-auto-1-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.551+03:00 DEBUG 88837 --- [o-auto-1-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYzY (truncated)...]
+2026-11-20T23:42:06.552+03:00 DEBUG 88837 --- [o-auto-1-exec-9] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.553+03:00 DEBUG 88837 --- [o-auto-1-exec-9] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.553+03:00 DEBUG 88837 --- [o-auto-1-exec-9] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:06.554+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.554+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.555+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Refresh-токен уже использован}]
+2026-11-20T23:42:06.555+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Refresh-токен уже использован"]
+2026-11-20T23:42:06.555+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:06.555+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.556+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.557+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.558+03:00 DEBUG 88837 --- [-auto-1-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.558+03:00 DEBUG 88837 --- [-auto-1-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImYzY (truncated)...]
+2026-11-20T23:42:06.558+03:00 DEBUG 88837 --- [-auto-1-exec-10] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.559+03:00 DEBUG 88837 --- [-auto-1-exec-10] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.560+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.560+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.560+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Сессия отозвана}]
+2026-11-20T23:42:06.560+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Сессия отозвана"]
+2026-11-20T23:42:06.560+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:06.561+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+2026-11-20T23:42:06.562+03:00 DEBUG 88837 --- [o-auto-1-exec-1] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.562+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/users", parameters={}
+2026-11-20T23:42:06.562+03:00 DEBUG 88837 --- [o-auto-1-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.UserController#getAll()
+2026-11-20T23:42:06.563+03:00 DEBUG 88837 --- [o-auto-1-exec-1] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.564+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.564+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.example.lab2.model.User@382336b1]]
+2026-11-20T23:42:06.564+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.565+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:06.565+03:00 DEBUG 88837 --- [o-auto-1-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:06.565+03:00 DEBUG 88837 --- [o-auto-1-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6IjMwN (truncated)...]
+2026-11-20T23:42:06.566+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:06.566+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.568+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.568+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:06.569+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.569+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImFkY (truncated)...]
+2026-11-20T23:42:06.569+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+]]></system-out>
+  </testcase>
+  <testcase name="registrationCreatesDeveloperAndPairWithoutExposingPassword" classname="com.example.lab2.AuthIntegrationTest" time="0.21">
+    <system-out><![CDATA[2026-11-20T23:42:06.573+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:06.574+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.574+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.574+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.575+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.575+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:06.635+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.638+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:06.638+03:00 DEBUG 88837 --- [o-auto-1-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:06.644+03:00 DEBUG 88837 --- [o-auto-1-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@5ea8963b]
+2026-11-20T23:42:06.647+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+2026-11-20T23:42:06.707+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.709+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:06.710+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.710+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXdAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6Ijg5N (truncated)...]
+2026-11-20T23:42:06.710+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2026-11-20T23:42:06.711+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.711+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.773+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+2026-11-20T23:42:06.775+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.775+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/users", parameters={}
+2026-11-20T23:42:06.775+03:00 DEBUG 88837 --- [o-auto-1-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.UserController#getAll()
+2026-11-20T23:42:06.776+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.776+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.777+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.example.lab2.model.User@344dff26, com.example.lab2.model.User@2d9cc36c]]
+2026-11-20T23:42:06.777+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:06.778+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:06.778+03:00 DEBUG 88837 --- [o-auto-1-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:06.778+03:00 DEBUG 88837 --- [o-auto-1-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@5fd5cc72]
+2026-11-20T23:42:06.779+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+2026-11-20T23:42:06.779+03:00 DEBUG 88837 --- [o-auto-1-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.779+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.779+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Пользователь с таким email уже существует}]
+2026-11-20T23:42:06.780+03:00 DEBUG 88837 --- [o-auto-1-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 409 CONFLICT "Пользователь с таким email уже существует"]
+2026-11-20T23:42:06.780+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 409 CONFLICT
+2026-11-20T23:42:06.780+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+  </testcase>
+  <testcase name="wrongCredentialsAndRegistrationRules" classname="com.example.lab2.AuthIntegrationTest" time="0.133">
+    <system-out><![CDATA[2026-11-20T23:42:06.783+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:06.784+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:06.784+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.785+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:06.785+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:06.844+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.847+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:06.847+03:00 DEBUG 88837 --- [o-auto-1-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:06.847+03:00 DEBUG 88837 --- [o-auto-1-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{password=wrong, email=dev@test.com}]
+2026-11-20T23:42:06.848+03:00 DEBUG 88837 --- [o-auto-1-exec-9] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.907+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.908+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.908+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Неверный логин или пароль}]
+2026-11-20T23:42:06.908+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Неверный логин или пароль"]
+2026-11-20T23:42:06.908+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:06.909+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:06.909+03:00 DEBUG 88837 --- [-auto-1-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:06.909+03:00 DEBUG 88837 --- [-auto-1-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{password=wrong, email=unknown@test.com}]
+2026-11-20T23:42:06.910+03:00 DEBUG 88837 --- [-auto-1-exec-10] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:06.910+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.910+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.910+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Неверный логин или пароль}]
+2026-11-20T23:42:06.911+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Неверный логин или пароль"]
+2026-11-20T23:42:06.911+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@6f6226eb]
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Пароли не совпадают}]
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Пароли не совпадают"]
+2026-11-20T23:42:06.912+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:06.913+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@79d0b3c9]
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Пароль должен быть не менее 6 символов}]
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Пароль должен быть не менее 6 символов"]
+2026-11-20T23:42:06.914+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+]]></system-out>
+  </testcase>
+  <testcase name="failedSessionInsertRollsBackRegistration" classname="com.example.lab2.AuthIntegrationTest" time="0.131">
+    <system-out><![CDATA[2026-11-20T23:42:06.917+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:06.918+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:06.919+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:06.978+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:06.981+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:06.981+03:00 DEBUG 88837 --- [o-auto-1-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:06.982+03:00 DEBUG 88837 --- [o-auto-1-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@149f352e]
+2026-11-20T23:42:06.982+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+2026-11-20T23:42:07.041+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:07.043+03:00 DEBUG 88837 --- [o-auto-1-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleRuntime(RuntimeException)
+2026-11-20T23:42:07.043+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.043+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Внутренняя ошибка сервера}]
+2026-11-20T23:42:07.044+03:00 DEBUG 88837 --- [o-auto-1-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Test insert failure]
+2026-11-20T23:42:07.044+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
+2026-11-20T23:42:07.045+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+2026-11-20T23:42:07.046+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+  </testcase>
+  <testcase name="inactiveAndDeletedUsersCannotRefreshOrUseAccess" classname="com.example.lab2.AuthIntegrationTest" time="0.207">
+    <system-out><![CDATA[2026-11-20T23:42:07.049+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:07.050+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:07.050+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:07.110+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:07.112+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.113+03:00 DEBUG 88837 --- [o-auto-1-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.113+03:00 DEBUG 88837 --- [o-auto-1-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com, deviceId=test-device, password=secret123}]
+2026-11-20T23:42:07.113+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.173+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:07.175+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.175+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6IjAyZ (truncated)...]
+2026-11-20T23:42:07.175+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:07.176+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.179+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.id=?
+2026-11-20T23:42:07.180+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : update users set email=?,is_active=?,name=?,password=?,role=? where id=?
+2026-11-20T23:42:07.182+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.182+03:00 DEBUG 88837 --- [o-auto-1-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.182+03:00 DEBUG 88837 --- [o-auto-1-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6IjAyZ (truncated)...]
+2026-11-20T23:42:07.183+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.183+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.184+03:00 DEBUG 88837 --- [o-auto-1-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.184+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.184+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Сессия недействительна}]
+2026-11-20T23:42:07.185+03:00 DEBUG 88837 --- [o-auto-1-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Сессия недействительна"]
+2026-11-20T23:42:07.185+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.186+03:00 DEBUG 88837 --- [o-auto-1-exec-7] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.188+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.188+03:00 DEBUG 88837 --- [o-auto-1-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.188+03:00 DEBUG 88837 --- [o-auto-1-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{password=secret123, email=dev@test.com}]
+2026-11-20T23:42:07.188+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.247+03:00 DEBUG 88837 --- [o-auto-1-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.247+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.247+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Учетная запись заблокирована}]
+2026-11-20T23:42:07.247+03:00 DEBUG 88837 --- [o-auto-1-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Учетная запись заблокирована"]
+2026-11-20T23:42:07.247+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.248+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:07.249+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:07.250+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.250+03:00 DEBUG 88837 --- [o-auto-1-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.251+03:00 DEBUG 88837 --- [o-auto-1-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6IjAyZ (truncated)...]
+2026-11-20T23:42:07.251+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.252+03:00 DEBUG 88837 --- [o-auto-1-exec-8] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.252+03:00 DEBUG 88837 --- [o-auto-1-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.252+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.253+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Сессия недействительна}]
+2026-11-20T23:42:07.253+03:00 DEBUG 88837 --- [o-auto-1-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Сессия недействительна"]
+2026-11-20T23:42:07.253+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.253+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+  </testcase>
+  <testcase name="missingAndBlankFieldsReturn400" classname="com.example.lab2.AuthIntegrationTest" time="0.083">
+    <system-out><![CDATA[2026-11-20T23:42:07.256+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:07.257+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:07.258+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:07.317+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:07.319+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{}]
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле email}]
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле email"]
+2026-11-20T23:42:07.320+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.321+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.321+03:00 DEBUG 88837 --- [-auto-1-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.322+03:00 DEBUG 88837 --- [-auto-1-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{password=secret123, email=}]
+2026-11-20T23:42:07.322+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.322+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.322+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле email}]
+2026-11-20T23:42:07.322+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле email"]
+2026-11-20T23:42:07.322+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com}]
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле password}]
+2026-11-20T23:42:07.323+03:00 DEBUG 88837 --- [o-auto-1-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле password"]
+2026-11-20T23:42:07.324+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.324+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.324+03:00 DEBUG 88837 --- [o-auto-1-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.324+03:00 DEBUG 88837 --- [o-auto-1-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{}]
+2026-11-20T23:42:07.325+03:00 DEBUG 88837 --- [o-auto-1-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.325+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.325+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле refreshToken}]
+2026-11-20T23:42:07.325+03:00 DEBUG 88837 --- [o-auto-1-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле refreshToken"]
+2026-11-20T23:42:07.325+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=  }]
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле refreshToken}]
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле refreshToken"]
+2026-11-20T23:42:07.326+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@64c21e9d]
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле name}]
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле name"]
+2026-11-20T23:42:07.327+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.328+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.328+03:00 DEBUG 88837 --- [o-auto-1-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.328+03:00 DEBUG 88837 --- [o-auto-1-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@30be6241]
+2026-11-20T23:42:07.329+03:00 DEBUG 88837 --- [o-auto-1-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.329+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.329+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле name}]
+2026-11-20T23:42:07.329+03:00 DEBUG 88837 --- [o-auto-1-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле name"]
+2026-11-20T23:42:07.329+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@31e317ad]
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле email}]
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле email"]
+2026-11-20T23:42:07.330+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@653603a9]
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле email}]
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле email"]
+2026-11-20T23:42:07.331+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@2516e5e8]
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле password}]
+2026-11-20T23:42:07.332+03:00 DEBUG 88837 --- [o-auto-1-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле password"]
+2026-11-20T23:42:07.333+03:00 DEBUG 88837 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.333+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.333+03:00 DEBUG 88837 --- [o-auto-1-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.333+03:00 DEBUG 88837 --- [o-auto-1-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@779c79aa]
+2026-11-20T23:42:07.333+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.334+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.334+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле password}]
+2026-11-20T23:42:07.334+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле password"]
+2026-11-20T23:42:07.334+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@52aab67d]
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле confirmPassword}]
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле confirmPassword"]
+2026-11-20T23:42:07.335+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/register", parameters={}
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#register(RegisterRequest)
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.RegisterRequest@67f23d6]
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Не заполнено поле confirmPassword}]
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "Не заполнено поле confirmPassword"]
+2026-11-20T23:42:07.336+03:00 DEBUG 88837 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-20T23:42:07.337+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+  </testcase>
+  <testcase name="oldAuthPathsAndRoleChecksWork" classname="com.example.lab2.AuthIntegrationTest" time="0.151">
+    <system-out><![CDATA[2026-11-20T23:42:07.340+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:07.341+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:07.341+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:07.404+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:07.406+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/api/auth/login", parameters={}
+2026-11-20T23:42:07.406+03:00 DEBUG 88837 --- [o-auto-1-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.407+03:00 DEBUG 88837 --- [o-auto-1-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{password=secret123, email=dev@test.com}]
+2026-11-20T23:42:07.407+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.468+03:00 DEBUG 88837 --- [o-auto-1-exec-2] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:07.469+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.469+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImZjZ (truncated)...]
+2026-11-20T23:42:07.470+03:00 DEBUG 88837 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:07.471+03:00 DEBUG 88837 --- [o-auto-1-exec-3] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.472+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/api/software-products", parameters={}
+2026-11-20T23:42:07.472+03:00 DEBUG 88837 --- [o-auto-1-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.SoftwareProductController#create(SoftwareProduct)
+2026-11-20T23:42:07.473+03:00 DEBUG 88837 --- [o-auto-1-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.example.lab2.model.SoftwareProduct@571afcfa]
+2026-11-20T23:42:07.483+03:00 DEBUG 88837 --- [o-auto-1-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleAccess(AccessDeniedException)
+2026-11-20T23:42:07.483+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.483+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Недостаточно прав}]
+2026-11-20T23:42:07.484+03:00 DEBUG 88837 --- [o-auto-1-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authorization.AuthorizationDeniedException: Access Denied]
+2026-11-20T23:42:07.484+03:00 DEBUG 88837 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 403 FORBIDDEN
+2026-11-20T23:42:07.485+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/api/auth/refresh", parameters={}
+2026-11-20T23:42:07.485+03:00 DEBUG 88837 --- [o-auto-1-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.485+03:00 DEBUG 88837 --- [o-auto-1-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImZjZ (truncated)...]
+2026-11-20T23:42:07.486+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.486+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.488+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:07.488+03:00 DEBUG 88837 --- [o-auto-1-exec-4] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:07.489+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.489+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImU5N (truncated)...]
+2026-11-20T23:42:07.489+03:00 DEBUG 88837 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+]]></system-out>
+  </testcase>
+  <testcase name="tokenTypesAndUnknownTokensAreRejected" classname="com.example.lab2.AuthIntegrationTest" time="0.139">
+    <system-out><![CDATA[2026-11-20T23:42:07.493+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:07.493+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:07.494+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:07.494+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:07.495+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:07.555+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:07.558+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.558+03:00 DEBUG 88837 --- [o-auto-1-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.558+03:00 DEBUG 88837 --- [o-auto-1-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com, deviceId=test-device, password=secret123}]
+2026-11-20T23:42:07.558+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.619+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:07.620+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.620+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImJiM (truncated)...]
+2026-11-20T23:42:07.621+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:07.622+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.622+03:00 DEBUG 88837 --- [o-auto-1-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.622+03:00 DEBUG 88837 --- [o-auto-1-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoiYWNjZXNzIiwianRpIjoiZWIzM (truncated)...]
+2026-11-20T23:42:07.623+03:00 DEBUG 88837 --- [o-auto-1-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.623+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.623+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Неверный refresh-токен}]
+2026-11-20T23:42:07.623+03:00 DEBUG 88837 --- [o-auto-1-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Неверный refresh-токен"]
+2026-11-20T23:42:07.623+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.625+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=garbage}]
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Неверный refresh-токен}]
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Неверный refresh-токен"]
+2026-11-20T23:42:07.626+03:00 DEBUG 88837 --- [o-auto-1-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.627+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.627+03:00 DEBUG 88837 --- [-auto-1-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.627+03:00 DEBUG 88837 --- [-auto-1-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImExM (truncated)...]
+2026-11-20T23:42:07.628+03:00 DEBUG 88837 --- [-auto-1-exec-10] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.628+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.628+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.628+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Сессия не найдена}]
+2026-11-20T23:42:07.628+03:00 DEBUG 88837 --- [-auto-1-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Сессия не найдена"]
+2026-11-20T23:42:07.628+03:00 DEBUG 88837 --- [-auto-1-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.629+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+  </testcase>
+  <testcase name="expiredSessionAndWrongOwnerAreRejected" classname="com.example.lab2.AuthIntegrationTest" time="0.144">
+    <system-out><![CDATA[2026-11-20T23:42:07.631+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0
+2026-11-20T23:42:07.632+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from user_sessions where id=?
+2026-11-20T23:42:07.633+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0
+2026-11-20T23:42:07.633+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : delete from users where id=?
+2026-11-20T23:42:07.698+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : insert into users (email,is_active,name,password,role) values (?,?,?,?,?)
+2026-11-20T23:42:07.702+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/auth/login", parameters={}
+2026-11-20T23:42:07.702+03:00 DEBUG 88837 --- [o-auto-1-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#login(Map)
+2026-11-20T23:42:07.702+03:00 DEBUG 88837 --- [o-auto-1-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{email=dev@test.com, deviceId=test-device, password=secret123}]
+2026-11-20T23:42:07.703+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.762+03:00 DEBUG 88837 --- [o-auto-1-exec-5] org.hibernate.SQL                        : insert into user_sessions (access_token,access_token_expiry,device_id,refresh_token,refresh_token_expiry,status,username,id) values (?,?,?,?,?,?,?,?)
+2026-11-20T23:42:07.764+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.764+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImM4O (truncated)...]
+2026-11-20T23:42:07.764+03:00 DEBUG 88837 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-20T23:42:07.765+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.766+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.id=?
+2026-11-20T23:42:07.766+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:07.768+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.768+03:00 DEBUG 88837 --- [o-auto-1-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.768+03:00 DEBUG 88837 --- [o-auto-1-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImM4O (truncated)...]
+2026-11-20T23:42:07.769+03:00 DEBUG 88837 --- [o-auto-1-exec-7] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.769+03:00 DEBUG 88837 --- [o-auto-1-exec-7] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.770+03:00 DEBUG 88837 --- [o-auto-1-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.770+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.770+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Сессия недействительна}]
+2026-11-20T23:42:07.770+03:00 DEBUG 88837 --- [o-auto-1-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Сессия недействительна"]
+2026-11-20T23:42:07.770+03:00 DEBUG 88837 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.770+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.id=?
+2026-11-20T23:42:07.771+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : update user_sessions set access_token=?,access_token_expiry=?,device_id=?,refresh_token=?,refresh_token_expiry=?,status=?,username=? where id=?
+2026-11-20T23:42:07.772+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/auth/refresh", parameters={}
+2026-11-20T23:42:07.772+03:00 DEBUG 88837 --- [o-auto-1-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.lab2.controller.AuthController#refresh(Map)
+2026-11-20T23:42:07.772+03:00 DEBUG 88837 --- [o-auto-1-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXZAdGVzdC5jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6ImM4O (truncated)...]
+2026-11-20T23:42:07.772+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select us1_0.id,us1_0.access_token,us1_0.access_token_expiry,us1_0.device_id,us1_0.refresh_token,us1_0.refresh_token_expiry,us1_0.status,us1_0.username from user_sessions us1_0 where us1_0.refresh_token=? for no key update of us1_0
+2026-11-20T23:42:07.773+03:00 DEBUG 88837 --- [o-auto-1-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.email,u1_0.is_active,u1_0.name,u1_0.password,u1_0.role from users u1_0 where u1_0.email=?
+2026-11-20T23:42:07.773+03:00 DEBUG 88837 --- [o-auto-1-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.lab2.controller.GlobalExceptionHandler#handleStatus(ResponseStatusException)
+2026-11-20T23:42:07.773+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-20T23:42:07.773+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Сессия недействительна}]
+2026-11-20T23:42:07.774+03:00 DEBUG 88837 --- [o-auto-1-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 401 UNAUTHORIZED "Сессия недействительна"]
+2026-11-20T23:42:07.774+03:00 DEBUG 88837 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 401 UNAUTHORIZED
+2026-11-20T23:42:07.774+03:00 DEBUG 88837 --- [           main] org.hibernate.SQL                        : select count(*) from user_sessions us1_0
+]]></system-out>
+  </testcase>
+</testsuite>

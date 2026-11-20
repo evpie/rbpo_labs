@@ -27,8 +27,8 @@ public class JwtService {
                       @Value("${jwt.access-ttl}") Duration accessTtl,
                       @Value("${jwt.refresh-ttl}") Duration refreshTtl) {
         byte[] bytes = secret.getBytes(StandardCharsets.UTF_8);
-        if (bytes.length != 32) {
-            throw new IllegalArgumentException("Ключ JWT должен занимать 32 байта");
+        if (bytes.length < 32) {
+            throw new IllegalArgumentException("Ключ JWT должен занимать не меньше 32 байт");
         }
         if (accessTtl.getSeconds() < 1 || refreshTtl.getSeconds() < 1) {
             throw new IllegalArgumentException("Время жизни JWT должно быть не меньше секунды");

@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "b541d583-8108-4b54-9f4f-8bc2d5d65c0e",
     "name": "RBPO — проект и задание 5",
-    "description": "Полный последовательный прогон всех HTTP-методов проекта и JWT access/refresh. Запустить все папки в Runner сверху вниз. Проверки БД: database/check_sessions.sql. Opaque и производительность: mvn test. Просроченные JWT, неизвестные подписанные сессии, откаты и гонка двух refresh проверяются Java-тестами.",
+    "description": "Полный последовательный прогон всех HTTP-методов проекта и JWT access/refresh. Запустить все папки в Runner сверху вниз. Проверки БД: database/check_sessions.sql. Просроченные JWT, неизвестные подписанные сессии, откаты и гонка двух refresh проверяются Java-тестами.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [

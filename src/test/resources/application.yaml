@@ -8,6 +8,6 @@ spring:
       ddl-auto: create-drop
     open-in-view: false
 jwt:
-  secret: KseniiaKseniiaKseniiaKseniiaKsen
+  secret: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
   access-ttl: 15m
   refresh-ttl: 7d

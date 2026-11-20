@@ -14,7 +14,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JwtServiceTest {
-    static final String SECRET = "KseniiaKseniiaKseniiaKseniiaKsen";
+    static final String SECRET = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
     final JwtService jwt = new JwtService(SECRET, Duration.ofMinutes(15), Duration.ofDays(7));
 
     JwtBuilder builder() {
